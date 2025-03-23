@@ -1,0 +1,55 @@
+# Flutter-related files
+/.dart_tool/
+/.flutter-plugins/
+/.flutter-plugins-dependencies/
+/.packages
+/.pub-cache/
+/build/
+
+# Android-specific files
+**/android/**/.gradle
+**/android/**/local.properties
+**/android/**/.idea/
+
+# iOS-specific files
+**/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/Generated.xcconfig
+**/ios/**/.idea/
+/ios/.vscode/
+**/ios/**/xcuserdata/
+
+# Web-specific files
+/web/.dart_tool/
+/web/.vscode/
+
+# Windows-specific files
+/windows/.dart_tool/
+
+# macOS-specific files
+/macOS/.dart_tool/
+
+# Linux-specific files
+/linux/.dart_tool/
+
+# VS Code-specific files
+.vscode/
+/*.vscode/
+
+# IntelliJ/Android Studio-specific files
+.idea/
+*.iml
+
+# Flutter-related cache files
+.dart_tool/
+/pubspec.lock
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.lock
+*~#
+.DS_Store
+*.bak
+Thumbs.db
