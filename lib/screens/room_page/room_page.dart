@@ -224,7 +224,7 @@ class RoomPage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 33)),
-            child: const CustomButton(text: 'Book room', goTo: HomeLayout(index: 1,)),
+            child:  CustomButton(text: 'Book room', goTo: HomeLayout()),
           )
         ],
       ),

@@ -8,6 +8,7 @@ class CustomButton extends StatelessWidget {
   final Color textColor;
   final double? width;
   final double? height;
+  final VoidCallback? onTap;
 
   const CustomButton({
     super.key,
@@ -17,6 +18,7 @@ class CustomButton extends StatelessWidget {
     this.textColor = AppColors.white,
     this.width,
     this.height,
+    this.onTap
   });
 
   @override
@@ -33,6 +35,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: () {
+          onTap;
           Navigator.of(context).pushAndRemoveUntil(
             PageRouteBuilder(
               pageBuilder: (context, animation, secondaryAnimation) => goTo,

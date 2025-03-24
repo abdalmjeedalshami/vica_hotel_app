@@ -33,13 +33,14 @@ class _RoomsScreenState extends State<RoomsScreen> {
       appBar: appBar(context),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: responsive(context, 16),
-              vertical: responsive(context, 8)),
+          padding: EdgeInsets.only(top: responsive(context, 16), bottom: responsive(context, 50)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SearchField(controller: searchController),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: responsive(context, 16)),
+                child: SearchField(controller: searchController),
+              ),
 
               // Titles slider
               titlesSlider(context, selectedColor: AppColors.earthyBrown),
@@ -47,7 +48,7 @@ class _RoomsScreenState extends State<RoomsScreen> {
 
               // Horizontal room slider of vertical room cards
               roomsSlider(context),
-              SizedBox(height: responsive(context, 3)),
+              SizedBox(height: responsive(context, 12)),
               roomsSlider(context, controller: scrollController)
             ],
           ),

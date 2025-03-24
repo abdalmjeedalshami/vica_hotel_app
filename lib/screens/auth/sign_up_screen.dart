@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
@@ -61,7 +63,7 @@ class SignUpScreen extends StatelessWidget {
                           assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       // Sign Up Button
-                      const CustomButton(text: 'Sign up', goTo: HomeLayout(index: 0,)),
+                       CustomButton(text: 'Sign up', goTo: HomeLayout()),
 
                       SizedBox(height: responsive(context, 10)),
 
@@ -83,7 +85,7 @@ class SignUpScreen extends StatelessWidget {
                       socialLoginButton(context,
                           text: 'Continue with Apple',
                           iconPath: AppIcons.apple, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:  const HomeLayout(index: 0,));
+                        NavigationUtil.navigateTo(context, screen:   HomeLayout());
                       }),
 
                       const SizedBox(height: 20),
@@ -91,7 +93,7 @@ class SignUpScreen extends StatelessWidget {
                       socialLoginButton(context,
                           text: 'Continue with Google',
                           iconPath: AppIcons.google, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:  const HomeLayout(index: 0,));
+                        NavigationUtil.navigateTo(context, screen:  HomeLayout());
                       })
                     ]))));
   }

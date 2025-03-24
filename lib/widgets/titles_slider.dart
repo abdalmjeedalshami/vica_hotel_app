@@ -17,7 +17,7 @@ Widget titlesSlider(context, {Color? selectedColor}) => SizedBox(
     itemBuilder: (context, index) {
       if (index == 0) {
         return Padding(
-          padding: EdgeInsets.only(right: responsive(context, 18)),
+          padding: EdgeInsets.only(right: responsive(context, 18), left: responsive(context, 16)),
           child: PoppinsText.semiBold('The Royal',
               color: selectedColor ?? Theme.of(context).primaryColor, fontSize: responsive(context, 12)),
         );

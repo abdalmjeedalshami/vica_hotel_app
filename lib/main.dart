@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_state.dart';
 import 'package:vica_hotel_app/screens/flash_screen.dart';
@@ -19,7 +20,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => MainCubit())
+        BlocProvider(create: (_) => MainCubit()),
+        BlocProvider(create: (_) => HomeCubit())
       ],
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {

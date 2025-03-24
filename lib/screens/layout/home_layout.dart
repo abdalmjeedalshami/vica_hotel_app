@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/screens/layout/account/account_page.dart';
 import 'package:vica_hotel_app/screens/layout/booking/booking_page.dart';
 import 'package:vica_hotel_app/screens/layout/home/home_screen.dart';
@@ -8,17 +9,11 @@ import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 
-class HomeLayout extends StatefulWidget {
-  final int index;
+import '../../providers/home/home_cubit.dart';
+import '../../providers/home/home_state.dart';
 
-  const HomeLayout({Key? key, required this.index}) : super (key: key);
-
-  @override
-  State<HomeLayout> createState() => _HomeLayoutState();
-}
-
-class _HomeLayoutState extends State<HomeLayout> {
-  late int _currentIndex;
+class HomeLayout extends StatelessWidget {
+  HomeLayout({Key? key}) : super (key: key);
 
   final List<Widget> screens = [
     HomeScreen(),
@@ -28,20 +23,15 @@ class _HomeLayoutState extends State<HomeLayout> {
   ];
 
   @override
-  void initState() {
-    super.initState();
-    _currentIndex = widget.index;
-  }
-
-  @override
   Widget build(BuildContext context) {
+    return BlocBuilder<HomeCubit, HomeState>(
+  builder: (context, state) {
+    HomeCubit homeCubit = context.read<HomeCubit>();
     return Scaffold(
-        body: screens[_currentIndex],
+        body: screens[homeCubit.currentIndex],
         bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentIndex,
-          onTap: (newIndex) {setState(() {
-            _currentIndex = newIndex;
-          });},
+          currentIndex: homeCubit.currentIndex,
+          onTap: (newIndex) {homeCubit.changeSelectedIndex(newIndex);},
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: TextStyle(fontFamily: 'Poppins', fontSize: responsive(context, 10), fontWeight: FontWeight.w500),
           unselectedLabelStyle: TextStyle(fontFamily: 'Poppins', fontSize: responsive(context, 10), fontWeight: FontWeight.w500),
@@ -53,28 +43,32 @@ class _HomeLayoutState extends State<HomeLayout> {
             BottomNavigationBarItem(
               icon: Image.asset(AppIcons.home,
                   color:
-                  _currentIndex == 0 ? AppColors.primary : Theme.of(context).unselectedItemColor),
+                  homeCubit.currentIndex == 0 ? AppColors.primary : Theme.of(context).unselectedItemColor),
               label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(AppIcons.booking,
                   color:
-                  _currentIndex == 1 ? AppColors.primary : Theme.of(context).unselectedItemColor),
+                  homeCubit.currentIndex == 1 ? AppColors.primary : Theme.of(context).unselectedItemColor),
               label: 'Booking',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(AppIcons.rooms,
                   color:
-                  _currentIndex == 2 ? AppColors.primary : Theme.of(context).unselectedItemColor),
+                  homeCubit.currentIndex == 2 ? AppColors.primary : Theme.of(context).unselectedItemColor),
               label: 'Rooms',
             ),
             BottomNavigationBarItem(
               icon: Image.asset(AppIcons.person,
                   color:
-                  _currentIndex == 3 ? AppColors.primary : Theme.of(context).unselectedItemColor),
+                  homeCubit.currentIndex == 3 ? AppColors.primary : Theme.of(context).unselectedItemColor),
               label: 'Account',
             ),
           ],
         ));
+  },
+);
   }
+  
 }
+

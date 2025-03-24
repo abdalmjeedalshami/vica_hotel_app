@@ -31,9 +31,9 @@ class RoomCard extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         width: responsive(context, 250),
-        child: Card(
+        child: Container(
           clipBehavior: Clip.hardEdge,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
           child: Stack(
             alignment: AlignmentDirectional.bottomCenter,
             children: [

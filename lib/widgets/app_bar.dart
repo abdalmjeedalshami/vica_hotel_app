@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/providers/main/main_state.dart';
-import 'package:vica_hotel_app/screens/layout/home_layout.dart';
-import 'package:vica_hotel_app/utils/navigation_util.dart';
+import '../providers/home/home_cubit.dart';
 import '../providers/main/main_cubit.dart';
 import '../utils/images.dart';
 import '../utils/responsive_util.dart';
@@ -26,7 +25,7 @@ AppBar appBar(context) => AppBar(
         Padding(
           padding: EdgeInsets.only(right: responsive(context, 16)),
           child: GestureDetector(
-            onTap: (){NavigationUtil.navigateTo(context, screen: HomeLayout(index: 3));},
+            onTap: (){BlocProvider.of<HomeCubit>(context).changeSelectedIndex(3);},
             child: const CircleAvatar(
               backgroundImage: AssetImage(AppImages.user),
               // User image
