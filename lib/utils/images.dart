@@ -2,7 +2,7 @@ class AppImages {
   // Auth Icons
   static const String logo = 'assets/images/logo.png';
   static const String user = 'assets/images/user.png';
-  static const String userBig = 'assets/images/user_big.png';
+  static const String userBig = 'assets/images/profile_image.png';
   static const String welcomeImage = 'assets/images/welcome_image.png';
   static const String welcomeImageFilter = 'assets/filters/welcome_image_filter.png';
   static const String phone = 'assets/icons/phone.png';
