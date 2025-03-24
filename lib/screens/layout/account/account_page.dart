@@ -3,6 +3,7 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/images.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../../../utils/show_dialog_util.dart';
 import '../../../widgets/profile_field.dart';
@@ -30,17 +31,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // Optionally remove or style the AppBar as needed
-        appBar: AppBar(
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          // This makes the app bar icons dark on a light background
-          iconTheme: const IconThemeData(color: Colors.black),
-        ),
         body: SingleChildScrollView(
             child: Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: responsive(context, 16)),
+                    EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 90)),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -54,7 +48,9 @@ class ProfileScreen extends StatelessWidget {
 
                       // Display the user name
                       RalewayText.medium('Rami Alkordy',
-                          fontSize: responsive(context, 15)),
+                          fontSize: responsive(context, 15),
+                        color: Theme.of(context).socialLoginButtonColor,
+                      ),
                       SizedBox(height: responsive(context, 30)),
 
                       // Editable fields for the profile information.

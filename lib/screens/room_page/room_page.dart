@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:vica_hotel_app/screens/layout/booking/booking_page.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/images.dart';
@@ -225,7 +224,7 @@ class RoomPage extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 33)),
-            child: const CustomButton(text: 'Book room', goTo: HomeLayout()),
+            child: const CustomButton(text: 'Book room', goTo: HomeLayout(index: 1,)),
           )
         ],
       ),

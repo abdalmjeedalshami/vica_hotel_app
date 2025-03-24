@@ -61,7 +61,7 @@ class HomeScreen extends StatelessWidget {
 
                       // Vertical room cards
                       // Horizontal room slider
-                      roomsSlider(context)
+                      roomsSlider(context),
                     ]))));
   }
 }

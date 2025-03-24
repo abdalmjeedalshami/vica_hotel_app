@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../utils/colors.dart';
 import '../utils/responsive_util.dart';
@@ -30,7 +31,7 @@ class ToggleButton extends StatelessWidget {
               'Active',
               color: isSelected
                   ? AppColors.white
-                  : AppColors.darkGray_1,
+                  : Theme.of(context).toggleBookingButtonText,
             ),
           ),
         ),

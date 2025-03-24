@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/active_tab.dart';
 import 'package:vica_hotel_app/widgets/app_bar.dart';
 import '../../../models/booking_item_model.dart';
@@ -33,7 +33,7 @@ class BookingScreenState extends State<BookingScreen> {
               padding: const EdgeInsets.all(16.0),
               child: Container(
                   decoration: BoxDecoration(
-                    color: AppColors.softWhite,
+                    color: Theme.of(context).toggleBookingButton,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   padding: EdgeInsetsDirectional.all(responsive(context, 2)),

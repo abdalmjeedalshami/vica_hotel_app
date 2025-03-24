@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../utils/colors.dart';
 import '../utils/icons.dart';
@@ -38,6 +39,8 @@ class ProfileField extends StatelessWidget {
       ),
       child: Row(
         children: [
+
+          // Prefix Icon
           Image.asset(
             iconPath,
             color: prefixColor,
@@ -62,7 +65,7 @@ class ProfileField extends StatelessWidget {
           // The edit icon on the right side.
           Image.asset(
             AppIcons.edit,
-            color: AppColors.black,
+            color: Theme.of(context).socialLoginButtonColor,
           ),
         ],
       ),

@@ -36,7 +36,7 @@ Widget welcomeWidget(context, {required String imagePath, required String title,
               onPressed: () {},
               style: ElevatedButton.styleFrom(
                 minimumSize:
-                Size(0, responsive(context, 32)), backgroundColor: AppColors.white,
+                Size(0, responsive(context, 32)),
                 padding: EdgeInsetsDirectional.symmetric(
                     horizontal: responsive(context, 15)),
                 shape: RoundedRectangleBorder(

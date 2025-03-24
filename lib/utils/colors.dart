@@ -23,6 +23,7 @@ class AppColors {
   // White and Soft Shades
   static const Color white  = Color(0xFFffffff); // White #FFFFFF
   static const Color softWhite  = Color(0xFFFAFAFA); // Search field background & Horizontal room card #FAFAFA
+  static const Color semiTransparentWhite   = Color(0x40FFFFFF); // Feature Icon background #FFFFFF40
 
   // Transparent and Semi-Transparent Shades
   static const Color semiTransparentBlack  = Color(0x66000000); // Field icons #00000066

@@ -18,7 +18,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
         body: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.only(
@@ -32,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                       // Logo
                       Image.asset(
                         AppImages.logo,
-                        color: AppColors.primary,
+                        color: Theme.of(context).primaryColor,
                       ),
                       // Replace with your logo
 
@@ -40,11 +39,11 @@ class LoginScreen extends StatelessWidget {
 
                       // Email TextField
                       customTextField(context,
-                          hintText: 'Email', assetPath: AppIcons.email),
+                          hintText: 'Email', assetPath: AppIcons.email, type: TextInputType.emailAddress),
 
                       // Password TextField
                       customTextField(context,
-                          hintText: '********', assetPath: AppIcons.lock),
+                          hintText: '********', assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       SizedBox(height: responsive(context, 10)),
 
@@ -62,7 +61,7 @@ class LoginScreen extends StatelessWidget {
                       // Sign In Button
                       const CustomButton(
                         text: 'Sign in',
-                        goTo: HomeLayout(),
+                        goTo: HomeLayout(index: 0,),
                       ),
 
                       SizedBox(height: responsive(context, 10)),
@@ -73,7 +72,7 @@ class LoginScreen extends StatelessWidget {
                         child: TextButton(
                             onPressed: () {
                               NavigationUtil.navigateTo(
-                                  context, screen:  const SignUpScreen());
+                                  context, screen:  const SignUpScreen(), withRoute: true);
                             },
                             child: RalewayText.bold('Register now')),
                       ),
@@ -92,8 +91,8 @@ class LoginScreen extends StatelessWidget {
                         iconPath: AppIcons.apple,
                         onPressed: () {
                           NavigationUtil.navigateTo(
-                              context, screen:  const HomeLayout());
-                        },
+                              context, screen:  const HomeLayout(index: 0,));
+                        }
                       ),
 
                       SizedBox(height: responsive(context, 20)),
@@ -101,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                       socialLoginButton(context,
                           text: 'Continue with Google',
                           iconPath: AppIcons.google, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:  const HomeLayout());
+                        NavigationUtil.navigateTo(context, screen:  const HomeLayout(index: 0,));
                       })
                     ]))));
   }

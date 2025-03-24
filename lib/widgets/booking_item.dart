@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/poppins_text.dart';
 import '../models/booking_item_model.dart';
-import '../utils/colors.dart';
 import '../utils/responsive_util.dart';
 
 /// Custom widget that displays an individual booking item.
@@ -15,7 +15,6 @@ class BookingItemWidget extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 0,
-      color: AppColors.softWhite,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -67,7 +66,7 @@ class BookingItemWidget extends StatelessWidget {
                   SizedBox(height: responsive(context, 5)),
                   // Price
                   PoppinsText.medium('\$${booking.price.toStringAsFixed(0)}',
-                      fontSize: responsive(context, 12)),
+                      fontSize: responsive(context, 12), color: Theme.of(context).unselectedItemColor),
                   const SizedBox(height: 8),
 
                   Row(
@@ -75,8 +74,8 @@ class BookingItemWidget extends StatelessWidget {
                       return Padding(
                         padding: EdgeInsets.only(right: responsive(context, 8)),
                         child: Container(
-                          decoration: const BoxDecoration(
-                            color: AppColors.white,
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).unselectedTitlesSlider,
                             shape: BoxShape.circle,
                           ),
                           child: Image.asset(

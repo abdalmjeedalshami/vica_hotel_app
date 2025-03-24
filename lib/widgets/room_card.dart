@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/poppins_text.dart';
 
 class RoomCard extends StatelessWidget {
@@ -92,8 +93,8 @@ class RoomCard extends StatelessWidget {
                                 padding: EdgeInsets.only(
                                     right: responsive(context, 8)),
                                 child: Container(
-                                  decoration: const BoxDecoration(
-                                    color: AppColors.white,
+                                  decoration: BoxDecoration(
+                                    color: Theme.of(context).featureIconBackground,
                                     shape: BoxShape.circle,
                                   ),
                                   child: Image.asset(

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../utils/colors.dart';
 
@@ -7,8 +8,6 @@ Widget socialLoginButton(context,
     {required String text, // Button text
     required String iconPath, // Path to icon image
     required VoidCallback onPressed, // Button action
-    Color backgroundColor = AppColors.white, // Default background color
-    Color borderColor = AppColors.lightGray, // Default border color
     double? borderWidth, // Default border width
     double? borderRadius, // Default border radius
     double fontSize = 14, // Default font size
@@ -16,11 +15,6 @@ Widget socialLoginButton(context,
     EdgeInsets? padding}) {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(
-      backgroundColor: backgroundColor,
-      side: BorderSide(
-        color: borderColor,
-        width: borderWidth ?? responsive(context, .5),
-      ),
       shape: RoundedRectangleBorder(
         borderRadius:
             BorderRadius.circular(borderRadius ?? responsive(context, 4)),
@@ -43,7 +37,7 @@ Widget socialLoginButton(context,
           ],
         ),
         Center(
-          child: RalewayText.medium(text),
+          child: RalewayText.medium(text, color: Theme.of(context).socialLoginButtonColor),
         ),
       ],
     ),

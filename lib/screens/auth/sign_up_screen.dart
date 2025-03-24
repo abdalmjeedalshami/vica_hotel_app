@@ -17,7 +17,6 @@ class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: AppColors.white,
         body: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.only(
@@ -38,7 +37,7 @@ class SignUpScreen extends StatelessWidget {
 
                       // Email
                       customTextField(context,
-                          hintText: 'Email', assetPath: AppIcons.email),
+                          hintText: 'Email', assetPath: AppIcons.email, type: TextInputType.emailAddress),
 
                       // First name
                       customTextField(context,
@@ -50,19 +49,19 @@ class SignUpScreen extends StatelessWidget {
 
                       // Phone number
                       customTextField(context,
-                          hintText: 'Phone number', assetPath: AppIcons.phone),
+                          hintText: 'Phone number', assetPath: AppIcons.phone, type: TextInputType.phone),
 
                       // Password
                       customTextField(context,
-                          hintText: 'Password', assetPath: AppIcons.lock),
+                          hintText: 'Password', assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       // Password confirmation
                       customTextField(context,
                           hintText: 'Password confirmation',
-                          assetPath: AppIcons.lock),
+                          assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       // Sign Up Button
-                      const CustomButton(text: 'Sign up', goTo: HomeLayout()),
+                      const CustomButton(text: 'Sign up', goTo: HomeLayout(index: 0,)),
 
                       SizedBox(height: responsive(context, 10)),
 
@@ -84,7 +83,7 @@ class SignUpScreen extends StatelessWidget {
                       socialLoginButton(context,
                           text: 'Continue with Apple',
                           iconPath: AppIcons.apple, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:  const HomeLayout());
+                        NavigationUtil.navigateTo(context, screen:  const HomeLayout(index: 0,));
                       }),
 
                       const SizedBox(height: 20),
@@ -92,7 +91,7 @@ class SignUpScreen extends StatelessWidget {
                       socialLoginButton(context,
                           text: 'Continue with Google',
                           iconPath: AppIcons.google, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:  const HomeLayout());
+                        NavigationUtil.navigateTo(context, screen:  const HomeLayout(index: 0,));
                       })
                     ]))));
   }

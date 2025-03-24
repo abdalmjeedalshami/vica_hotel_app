@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 
 import '../utils/colors.dart';
 import '../utils/icons.dart';
@@ -38,12 +39,11 @@ class SearchField extends StatelessWidget {
                   fontFamily: 'Raleway',
                   fontSize: responsive(context, 12),
                   fontWeight: FontWeight.w500,
-                  color: AppColors.semiTransparentBlack,
                 ),
                 prefixIcon: Image.asset(AppIcons.search,
-                    color: AppColors.semiTransparentBlack),
+                    color: Theme.of(context).customTextFieldIconColor),
                 suffixIcon: Image.asset(AppIcons.downArrow,
-                    color: AppColors.semiTransparentBlack),
+                    color: Theme.of(context).customTextFieldIconColor),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide.none,
@@ -57,7 +57,6 @@ class SearchField extends StatelessWidget {
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: AppColors.softWhite,
               ),
               onChanged: onChanged,
             ),
