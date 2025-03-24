@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
@@ -22,9 +20,9 @@ class SignUpScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.only(
-                    left: responsive(context, 16),
-                    right: responsive(context, 16),
-                    top: responsive(context, 50)),
+                    left: responsive(context, 24),
+                    right: responsive(context, 24),
+                    top: responsive(context, 70)),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -39,28 +37,28 @@ class SignUpScreen extends StatelessWidget {
 
                       // Email
                       customTextField(context,
-                          hintText: 'Email', assetPath: AppIcons.email, type: TextInputType.emailAddress),
+                          hintText: 'Email', prefix: AppIcons.email, type: TextInputType.emailAddress),
 
                       // First name
                       customTextField(context,
-                          hintText: 'First name', assetPath: AppIcons.person),
+                          hintText: 'First name', prefix: AppIcons.person),
 
                       // Last name
                       customTextField(context,
-                          hintText: 'Last name', assetPath: AppIcons.person),
+                          hintText: 'Last name', prefix: AppIcons.person),
 
                       // Phone number
                       customTextField(context,
-                          hintText: 'Phone number', assetPath: AppIcons.phone, type: TextInputType.phone),
+                          hintText: 'Phone number', prefix: AppIcons.phone, type: TextInputType.phone),
 
                       // Password
                       customTextField(context,
-                          hintText: 'Password', assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
+                          hintText: 'Password', prefix: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       // Password confirmation
                       customTextField(context,
                           hintText: 'Password confirmation',
-                          assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
+                          prefix: AppIcons.lock, type: TextInputType.visiblePassword),
 
                       // Sign Up Button
                        CustomButton(text: 'Sign up', goTo: HomeLayout()),

@@ -15,7 +15,7 @@ void showLogoutDialog(BuildContext context) {
       return CustomAlertDialog(
         onLogoutPressed: () {
           // Perform your logout operations here
-          NavigationUtil.navigateTo(context, screen: LoginScreen()); // Closes the dialog
+          NavigationUtil.navigateTo(context, screen: const LoginScreen()); // Closes the dialog
           context.read<HomeCubit>().currentIndex = 0;
           // Navigate or perform further actions if needed
         },

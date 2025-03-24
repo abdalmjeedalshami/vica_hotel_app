@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:vica_hotel_app/providers/home/home_cubit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/screens/auth/sign_up_screen.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
-import 'package:vica_hotel_app/utils/images.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
@@ -23,17 +21,18 @@ class LoginScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Padding(
                 padding: EdgeInsets.only(
-                    left: responsive(context, 16),
-                    right: responsive(context, 16),
+                    left: responsive(context, 24),
+                    right: responsive(context, 24),
                     top: responsive(context, 140)),
                 child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       // Logo
-                      Image.asset(
-                        AppImages.logo,
-                        color: Theme.of(context).primaryColor,
+                      SvgPicture.asset(
+                        AppIcons.logo,
+                        colorFilter: ColorFilter.mode(
+                            Theme.of(context).primaryColor, BlendMode.srcIn),
                       ),
                       // Replace with your logo
 
@@ -41,11 +40,16 @@ class LoginScreen extends StatelessWidget {
 
                       // Email TextField
                       customTextField(context,
-                          hintText: 'Email', assetPath: AppIcons.email, type: TextInputType.emailAddress),
+                          hintText: 'Email',
+                          prefix: AppIcons.email,
+                          suffix: AppIcons.check,
+                          type: TextInputType.emailAddress),
 
                       // Password TextField
                       customTextField(context,
-                          hintText: '********', assetPath: AppIcons.lock, type: TextInputType.visiblePassword),
+                          hintText: '********',
+                          prefix: AppIcons.lock,
+                          type: TextInputType.visiblePassword),
 
                       SizedBox(height: responsive(context, 10)),
 
@@ -61,7 +65,7 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: responsive(context, 10)),
 
                       // Sign In Button
-                       CustomButton(
+                      CustomButton(
                         text: 'Sign in',
                         goTo: HomeLayout(),
                       ),
@@ -73,8 +77,9 @@ class LoginScreen extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: TextButton(
                             onPressed: () {
-                              NavigationUtil.navigateTo(
-                                  context, screen:  const SignUpScreen(), withRoute: true);
+                              NavigationUtil.navigateTo(context,
+                                  screen: const SignUpScreen(),
+                                  withRoute: true);
                             },
                             child: RalewayText.bold('Register now')),
                       ),
@@ -87,22 +92,20 @@ class LoginScreen extends StatelessWidget {
                       SizedBox(height: responsive(context, 35)),
 
                       // Apple Sign-In Button
-                      socialLoginButton(
-                        context,
-                        text: 'Continue with Apple',
-                        iconPath: AppIcons.apple,
-                        onPressed: () {
-                          NavigationUtil.navigateTo(
-                              context, screen:   HomeLayout());
-                        }
-                      ),
+                      socialLoginButton(context,
+                          text: 'Continue with Apple',
+                          iconPath: AppIcons.apple, onPressed: () {
+                        NavigationUtil.navigateTo(context,
+                            screen: HomeLayout());
+                      }),
 
                       SizedBox(height: responsive(context, 20)),
 
                       socialLoginButton(context,
                           text: 'Continue with Google',
                           iconPath: AppIcons.google, onPressed: () {
-                        NavigationUtil.navigateTo(context, screen:   HomeLayout());
+                        NavigationUtil.navigateTo(context,
+                            screen: HomeLayout());
                       })
                     ]))));
   }

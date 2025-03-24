@@ -34,7 +34,7 @@ class ProfileScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Padding(
                 padding:
-                    EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 90)),
+                    EdgeInsets.symmetric(horizontal: responsive(context, 24), vertical: responsive(context, 90)),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [

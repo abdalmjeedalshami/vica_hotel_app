@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 
 import '../utils/colors.dart';
@@ -21,13 +22,11 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Padding(
       padding: EdgeInsets.only(bottom: responsive(context, 20)),
       child: Container(
         height: responsive(context, 45),
-        decoration:
-        BoxDecoration(borderRadius: BorderRadius.circular(5)),
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
         child: Stack(
           alignment: AlignmentDirectional.centerEnd,
           children: [
@@ -40,10 +39,29 @@ class SearchField extends StatelessWidget {
                   fontSize: responsive(context, 12),
                   fontWeight: FontWeight.w500,
                 ),
-                prefixIcon: Image.asset(AppIcons.search,
-                    color: Theme.of(context).customTextFieldIconColor),
-                suffixIcon: Image.asset(AppIcons.downArrow,
-                    color: Theme.of(context).customTextFieldIconColor),
+
+                prefixIcon: Container(
+                  padding: EdgeInsets.all(responsive(context, 16)),
+                  child: SvgPicture.asset(
+                    AppIcons.search,
+                    colorFilter: ColorFilter.mode(
+                        Theme.of(context).customTextFieldIconColor,
+                        BlendMode.srcIn),
+                  ),
+                ),
+                // prefixIcon: Image.asset(AppIcons.search,
+                //     color: Theme.of(context).customTextFieldIconColor),
+                suffixIcon: Container(
+                  padding: EdgeInsets.all(responsive(context, 16)),
+                  child: SvgPicture.asset(
+                    AppIcons.downArrow,
+                    colorFilter: ColorFilter.mode(
+                        Theme.of(context).customTextFieldIconColor,
+                        BlendMode.srcIn),
+                  ),
+                ),
+                // suffixIcon: Image.asset(AppIcons.downArrow,
+                //     color: Theme.of(context).customTextFieldIconColor),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(5),
                   borderSide: BorderSide.none,
@@ -63,7 +81,9 @@ class SearchField extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(right: responsive(context, 45)),
               child: Container(
-                  width: responsive(context, 1), height: responsive(context, 30), color: AppColors.lightGray),
+                  width: responsive(context, 1),
+                  height: responsive(context, 30),
+                  color: AppColors.lightGray),
             )
           ],
         ),

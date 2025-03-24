@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/images.dart';
@@ -49,8 +50,9 @@ class RoomPage extends StatelessWidget {
               ),
               // Back & Fav
               Padding(
-                padding:
-                     EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 25)),
+                padding: EdgeInsets.symmetric(
+                    horizontal: responsive(context, 16),
+                    vertical: responsive(context, 25)),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -59,16 +61,27 @@ class RoomPage extends StatelessWidget {
                         Navigator.pop(context);
                       },
                       icon: Container(
-                          height: responsive(context, 30),
-                          width: responsive(context, 30),
-                          decoration: const BoxDecoration(
-                            color: AppColors.white,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
+                        height: responsive(context, 30),
+                        width: responsive(context, 30),
+                        decoration: const BoxDecoration(
+                          color: AppColors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.all(responsive(context, 8)),
+                          child: SvgPicture.asset(
                             AppIcons.backArrow,
-                            color: AppColors.darkGray_1,
-                          )),
+                            width: responsive(context, 10),
+                            height: responsive(context, 10),
+                            colorFilter: const ColorFilter.mode(
+                                AppColors.darkGray_1, BlendMode.srcIn),
+                          ),
+                        ),
+                        // child: Image.asset(
+                        //   AppIcons.backArrow,
+                        //   color: AppColors.darkGray_1,
+                        // )
+                      ),
                     ),
                     IconButton(
                       onPressed: () {},
@@ -89,7 +102,8 @@ class RoomPage extends StatelessWidget {
               ),
               // info
               Container(
-                margin: EdgeInsetsDirectional.only(top: responsive(context, 250)),
+                margin:
+                    EdgeInsetsDirectional.only(top: responsive(context, 250)),
                 height: responsive(context, 200),
                 child: Padding(
                   padding: EdgeInsets.only(
@@ -154,14 +168,27 @@ class RoomPage extends StatelessWidget {
                                       color: AppColors.white,
                                       shape: BoxShape.circle,
                                     ),
-                                    child: Image.asset(
-                                      feature['iconPath'],
-                                      width: responsive(context, 57),
-                                      height: responsive(context, 57),
-                                      color: feature['available']
-                                          ? Colors.blue // Blue for available
-                                          : Colors.grey, // Gray for unavailable
+                                    child: Padding(
+                                      padding: EdgeInsets.all(responsive(context, 12)),
+                                      child: SvgPicture.asset(
+                                        feature['iconPath'],
+                                        height: responsive(context, 25),
+                                        width: responsive(context, 25),
+                                        colorFilter: ColorFilter.mode(
+                                            feature['available']
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                            BlendMode.srcIn),
+                                      ),
                                     ),
+                                    // child: Image.asset(
+                                    //   feature['iconPath'],
+                                    //   width: responsive(context, 57),
+                                    //   height: responsive(context, 57),
+                                    //   color: feature['available']
+                                    //       ? Colors.blue // Blue for available
+                                    //       : Colors.grey, // Gray for unavailable
+                                    // ),
                                   ),
                                   SizedBox(height: responsive(context, 5)),
                                   PoppinsText.medium(feature['featureName'],
@@ -223,8 +250,10 @@ class RoomPage extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: responsive(context, 16), vertical: responsive(context, 33)),
-            child:  CustomButton(text: 'Book room', goTo: HomeLayout()),
+            padding: EdgeInsets.symmetric(
+                horizontal: responsive(context, 16),
+                vertical: responsive(context, 33)),
+            child: CustomButton(text: 'Book room', goTo: HomeLayout()),
           )
         ],
       ),

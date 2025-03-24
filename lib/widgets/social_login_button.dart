@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
@@ -27,15 +28,7 @@ Widget socialLoginButton(context,
     onPressed: onPressed,
     child: Stack(
       children: [
-        Row(
-          children: [
-            Image.asset(
-              iconPath, // Use the passed icon path
-              width: responsive(context, 24),
-              height: responsive(context, 24),
-            ),
-          ],
-        ),
+        SvgPicture.asset(iconPath),
         Center(
           child: RalewayText.medium(text, color: Theme.of(context).socialLoginButtonColor),
         ),

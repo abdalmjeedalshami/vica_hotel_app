@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
@@ -94,17 +95,29 @@ class RoomCard extends StatelessWidget {
                                     right: responsive(context, 8)),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                    color: Theme.of(context).featureIconBackground,
+                                    color:
+                                        Theme.of(context).featureIconBackground,
                                     shape: BoxShape.circle,
                                   ),
-                                  child: Image.asset(
-                                    feature['iconPath'],
-                                    width: responsive(context, 20),
-                                    height: responsive(context, 20),
-                                    color: feature['available']
-                                        ? Colors.blue // Blue for available
-                                        : Colors.grey, // Gray for unavailable
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(feature['iconPath'],
+                                        width: 10,
+                                        height: 10,
+                                        colorFilter: ColorFilter.mode(
+                                            feature['available']
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                            BlendMode.srcIn)),
                                   ),
+                                  // child: Image.asset(
+                                  //   feature['iconPath'],
+                                  //   width: responsive(context, 20),
+                                  //   height: responsive(context, 20),
+                                  //   color: feature['available']
+                                  //       ? Colors.blue // Blue for available
+                                  //       : Colors.grey, // Gray for unavailable
+                                  // ),
                                 ),
                               );
                             }).toList(),

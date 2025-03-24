@@ -24,10 +24,10 @@ Widget roomsSlider(context, {ScrollController? controller}) => SizedBox(
                           rating: 5,
                           price: 190,
                           featuresIcons: [
-                            {'featureName': '42” television', 'iconPath': AppIcons.tvBig, 'available': true},
-                            {'featureName': 'Bath tube', 'iconPath': AppIcons.showerBig, 'available': false},
-                            {'featureName': '24H stable wifi', 'iconPath': AppIcons.wifiBig, 'available': true},
-                            {'featureName': 'Free Breakfast', 'iconPath': AppIcons.breakfastBig, 'available': true},
+                            {'featureName': '42” television', 'iconPath': AppIcons.tv, 'available': true},
+                            {'featureName': 'Bath tube', 'iconPath': AppIcons.shower, 'available': false},
+                            {'featureName': '24H stable wifi', 'iconPath': AppIcons.wifi, 'available': true},
+                            {'featureName': 'Free Breakfast', 'iconPath': AppIcons.breakfast, 'available': true},
                           ],
                           isAvailable: true),
                       withRoute: true);

@@ -27,7 +27,7 @@ AppBar appBar(context) => AppBar(
           child: GestureDetector(
             onTap: (){BlocProvider.of<HomeCubit>(context).changeSelectedIndex(3);},
             child: const CircleAvatar(
-              backgroundImage: AssetImage(AppImages.user),
+              backgroundImage: AssetImage(AppImages.userBig),
               // User image
               radius: 20,
             ),

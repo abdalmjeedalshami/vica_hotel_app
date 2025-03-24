@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/poppins_text.dart';
 import '../models/booking_item_model.dart';
@@ -66,28 +67,30 @@ class BookingItemWidget extends StatelessWidget {
                   SizedBox(height: responsive(context, 5)),
                   // Price
                   PoppinsText.medium('\$${booking.price.toStringAsFixed(0)}',
-                      fontSize: responsive(context, 12), color: Theme.of(context).unselectedItemColor),
+                      fontSize: responsive(context, 12),
+                      color: Theme.of(context).unselectedItemColor),
                   const SizedBox(height: 8),
 
                   Row(
                     children: booking.featuresIcons.map((feature) {
                       return Padding(
-                        padding: EdgeInsets.only(right: responsive(context, 8)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).unselectedTitlesSlider,
-                            shape: BoxShape.circle,
-                          ),
-                          child: Image.asset(
-                            feature['iconPath'],
-                            width: responsive(context, 20),
-                            height: responsive(context, 20),
-                            color: feature['available']
-                                ? Colors.blue // Blue for available
-                                : Colors.grey, // Gray for unavailable
-                          ),
-                        ),
-                      );
+                          padding:
+                              EdgeInsets.only(right: responsive(context, 8)),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).unselectedTitlesSlider,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(feature['iconPath'],
+                                      width: 10,
+                                      height: 10,
+                                      colorFilter: ColorFilter.mode(
+                                          feature['available']
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                          BlendMode.srcIn)))));
                     }).toList(),
                   ),
                   const SizedBox(height: 8),
@@ -100,7 +103,7 @@ class BookingItemWidget extends StatelessWidget {
                       Text(
                         booking.startDate,
                         style:
-                        const TextStyle(color: Colors.grey, fontSize: 12),
+                            const TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                       const SizedBox(width: 8),
                       const Text(
@@ -111,7 +114,7 @@ class BookingItemWidget extends StatelessWidget {
                       Text(
                         booking.endDate,
                         style:
-                        const TextStyle(color: Colors.grey, fontSize: 12),
+                            const TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),

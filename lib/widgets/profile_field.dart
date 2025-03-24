@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../utils/colors.dart';
@@ -39,12 +40,18 @@ class ProfileField extends StatelessWidget {
       ),
       child: Row(
         children: [
+          SvgPicture.asset(
+            iconPath,
+            height: 20,
+            width: 20,
+            colorFilter: ColorFilter.mode(prefixColor, BlendMode.srcIn),
+          ),
 
           // Prefix Icon
-          Image.asset(
-            iconPath,
-            color: prefixColor,
-          ),
+          // Image.asset(
+          //   iconPath,
+          //   color: prefixColor,
+          // ),
           SizedBox(width: responsive(context, 16)),
           Expanded(
             child: Column(
@@ -63,10 +70,14 @@ class ProfileField extends StatelessWidget {
             ),
           ),
           // The edit icon on the right side.
-          Image.asset(
-            AppIcons.edit,
-            color: Theme.of(context).socialLoginButtonColor,
-          ),
+          SvgPicture.asset(
+              AppIcons.edit,
+              colorFilter: ColorFilter.mode(
+                  Theme.of(context).socialLoginButtonColor, BlendMode.srcIn))
+          // Image.asset(
+          //   AppIcons.edit,
+          //   color: Theme.of(context).socialLoginButtonColor,
+          // ),
         ],
       ),
     );
