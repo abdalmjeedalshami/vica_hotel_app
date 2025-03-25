@@ -13,8 +13,32 @@ import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import 'package:vica_hotel_app/widgets/social_login_button.dart';
 import '../../utils/navigation_util.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController firstNameController = TextEditingController();
+  final TextEditingController lastNameController = TextEditingController();
+  final TextEditingController phoneNumberController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController passwordConfirmationController = TextEditingController();
+
+  @override
+  void dispose() {
+    // Dispose of the controllers to free resources
+    emailController.dispose();
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneNumberController.dispose();
+    passwordController.dispose();
+    passwordConfirmationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,32 +79,33 @@ class SignUpScreen extends StatelessWidget {
 
                       // Email
                       customTextField(context,
+                          controller: emailController,
                           hintText: 'Email',
                           prefix: AppIcons.email,
                           type: TextInputType.emailAddress),
 
                       // First name
-                      customTextField(context,
+                      customTextField(context, controller: firstNameController,
                           hintText: 'First name', prefix: AppIcons.person),
 
                       // Last name
-                      customTextField(context,
+                      customTextField(context, controller: lastNameController,
                           hintText: 'Last name', prefix: AppIcons.person),
 
                       // Phone number
-                      customTextField(context,
+                      customTextField(context, controller: phoneNumberController,
                           hintText: 'Phone number',
                           prefix: AppIcons.phone,
                           type: TextInputType.phone),
 
                       // Password
-                      customTextField(context,
+                      customTextField(context, controller: passwordController,
                           hintText: 'Password',
                           prefix: AppIcons.lock,
                           type: TextInputType.visiblePassword),
 
                       // Password confirmation
-                      customTextField(context,
+                      customTextField(context, controller: passwordConfirmationController,
                           hintText: 'Password confirmation',
                           prefix: AppIcons.lock,
                           type: TextInputType.visiblePassword),
@@ -89,13 +114,38 @@ class SignUpScreen extends StatelessWidget {
                       CustomButton(
                           text: 'Sign up',
                           onPressed: () {
+                            if (firstNameController.text.isEmpty ||
+                                lastNameController.text.isEmpty ||
+                                phoneNumberController.text.isEmpty ||
+                                emailController.text.isEmpty ||
+                                passwordController.text.isEmpty ||
+                                passwordConfirmationController.text.isEmpty) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Please fill in all fields")),
+                              );
+                              return;
+                            }
+
+                            if (passwordController.text != passwordConfirmationController.text) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(content: Text("Passwords do not match")),
+                              );
+                              return;
+                            }
+                            final firstName = passwordController.text;
+                            final lastName = lastNameController.text;
+                            final username = phoneNumberController.text;
+                            final email = emailController.text;
+                            final password = passwordController.text;
+                            final passwordConfirmation = passwordConfirmationController.text;
+
                             context.read<AuthCubit>().register({
-                              'first_name': 'aaa',
-                              'last_name': 'aaa',
-                              'user_name': 'aaaa',
-                              'email': 'tiwas31157@hikuhu.com',
-                              'password': 'aaaaaaaa',
-                              'password_confirmation': 'aaaaaaaa',
+                              'first_name': firstName,
+                              'last_name': lastName,
+                              'user_name': username,
+                              'email': email,
+                              'password': password,
+                              'password_confirmation': passwordConfirmation,
                             });
                           }),
 

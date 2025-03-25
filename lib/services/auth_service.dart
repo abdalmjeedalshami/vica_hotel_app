@@ -64,4 +64,22 @@ class AuthService {
       throw Exception(response.reasonPhrase); // Handle errors appropriately
     }
   }
+
+  Future<String> logout(String token) async {
+    var headers = {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token',
+    };
+
+    var request = http.Request('POST', Uri.parse('$baseUrl/logout'));
+    request.headers.addAll(headers);
+
+    http.StreamedResponse response = await request.send();
+
+    if (response.statusCode == 200) {
+      return await response.stream.bytesToString(); // Logout successful
+    } else {
+      throw Exception(response.reasonPhrase); // Handle errors
+    }
+  }
 }

@@ -29,7 +29,7 @@ class OtpPage extends StatelessWidget {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            NavigationUtil.navigateTo(context, screen: LoginScreen());
+            NavigationUtil.navigateTo(context, screen: const LoginScreen());
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
             );

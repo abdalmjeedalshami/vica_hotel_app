@@ -23,7 +23,7 @@ class SplashScreenState extends State<SplashScreen> {
         context,
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
-            return LoginScreen();
+            return const LoginScreen();
           },
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Define a right curve linear transition animation

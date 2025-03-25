@@ -28,6 +28,8 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  String? token;
+
   Future<void> login(String email, String password, bool rememberMe) async {
     try {
       emit(AuthLoading());
@@ -39,7 +41,25 @@ class AuthCubit extends Cubit<AuthState> {
       final message = response['message'];
       final data = response['data'];
 
+      token = response['data']['token'];
+
       emit(AuthSuccess(message, data));
+    } catch (e) {
+      emit(AuthFailure(e.toString()));
+    }
+  }
+
+  Future<void> logout() async {
+    try {
+      emit(AuthLoading());
+
+      if (token == null) throw Exception('Token not found');
+
+      final response = await authService.logout(token!);
+
+      token = null;
+
+      emit(AuthSuccess('Logout successful: $response'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }

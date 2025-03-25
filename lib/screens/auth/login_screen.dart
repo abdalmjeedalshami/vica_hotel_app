@@ -13,24 +13,38 @@ import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import 'package:vica_hotel_app/widgets/social_login_button.dart';
 
+import '../../providers/home/home_cubit.dart';
 import '../../utils/navigation_util.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+
+  const LoginScreen({super.key});
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+
   bool rememberMe = false;
 
-  LoginScreen({super.key}); // Default state for rememberMe checkbox
+  @override
+  void dispose() {
+    // Dispose of the controllers to free resources
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 
+ // Default state for rememberMe checkbox
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
             if (state is AuthSuccess) {
-              print(state.data);
-              // final token = context.read<AuthCubit>().secureStorage.read(key: 'token');
-              // print('This is token from secure storage: $token');
+              context.read<HomeCubit>().currentIndex = 0;
               NavigationUtil.navigateTo(context, screen: HomeLayout());
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
