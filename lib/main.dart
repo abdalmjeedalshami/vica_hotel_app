@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_state.dart';
 import 'package:vica_hotel_app/screens/flash_screen.dart';
+import 'package:vica_hotel_app/services/auth_service.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 
 
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => MainCubit()),
-        BlocProvider(create: (_) => HomeCubit())
+        BlocProvider(create: (_) => HomeCubit()),
+        BlocProvider(create: (_) => AuthCubit(AuthService()))
       ],
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {

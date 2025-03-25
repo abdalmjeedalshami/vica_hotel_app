@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
-import 'package:vica_hotel_app/utils/images.dart';
+import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 
 import 'auth/login_screen.dart';
@@ -22,7 +23,7 @@ class SplashScreenState extends State<SplashScreen> {
         context,
         PageRouteBuilder(
           pageBuilder: (context, animation, secondaryAnimation) {
-            return const LoginScreen();
+            return LoginScreen();
           },
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             // Define a right curve linear transition animation
@@ -55,9 +56,10 @@ class SplashScreenState extends State<SplashScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(
-              AppImages.logo,
-            ),
+            SvgPicture.asset(AppIcons.logo),
+            // Image.asset(
+            //   AppImages.logo,
+            // ),
             SizedBox(height: responsive(context, 3)),
 
             Text(

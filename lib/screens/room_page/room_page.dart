@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/images.dart';
+import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/custom_button.dart';
 import '../../utils/icons.dart';
 import '../../utils/responsive_util.dart';
@@ -218,13 +218,13 @@ class RoomPage extends StatelessWidget {
                 // Title
                 PoppinsText.semiBold(
                   'Room Specifications',
-                  color: AppColors.darkGray_1,
+                  color: Theme.of(context).socialLoginButtonColor,
                 ),
                 // Description
                 PoppinsText.regular(
                     'The elegant luxury bedrooms in this gallery showcase custom interior designs & decorating ideas. View pictures and find your perfect luxury bedroom design.',
                     fontSize: responsive(context, 13),
-                    color: AppColors.darkTransparentBlack,
+                    color: Theme.of(context).customTextFieldIconColor,
                     overflow: TextOverflow.visible),
               ],
             ),
@@ -253,7 +253,7 @@ class RoomPage extends StatelessWidget {
             padding: EdgeInsets.symmetric(
                 horizontal: responsive(context, 16),
                 vertical: responsive(context, 33)),
-            child: CustomButton(text: 'Book room', goTo: HomeLayout()),
+            child: const CustomButton(text: 'Book room'),
           )
         ],
       ),

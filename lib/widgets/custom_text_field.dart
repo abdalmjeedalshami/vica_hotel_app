@@ -7,11 +7,13 @@ import '../utils/colors.dart';
 Widget customTextField(context,
         {required String hintText,
         required String prefix,
+          TextEditingController? controller,
           String? suffix,
         TextInputType? type}) =>
     Padding(
       padding: EdgeInsets.only(bottom: responsive(context, 10)),
       child: TextFormField(
+        controller: controller,
         style: TextStyle(
           fontFamily: 'Raleway',
           fontWeight: FontWeight.w500,
@@ -27,12 +29,12 @@ Widget customTextField(context,
                   Theme.of(context).customTextFieldIconColor, BlendMode.srcIn),
             ),
           ),
-          suffixIcon: Padding(
-            padding: EdgeInsets.all(responsive(context, 16)),
-            child: SvgPicture.asset(
-              suffix ?? '',
-            ),
-          ),
+          suffixIcon: suffix != null ? Padding(
+      padding: EdgeInsets.all(responsive(context, 16)),
+      child: SvgPicture.asset(
+      suffix,
+      ),
+      ) : null,
           hintText: hintText,
           hintStyle: TextStyle(
             color: AppColors.grayColor,
