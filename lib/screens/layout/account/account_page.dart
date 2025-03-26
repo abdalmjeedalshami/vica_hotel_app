@@ -10,7 +10,6 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
-import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../../../providers/auth/auth_cubit.dart';
 import '../../../utils/show_dialog_util.dart';
