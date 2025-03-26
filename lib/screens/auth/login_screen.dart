@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/auth/auth_state.dart';
+import 'package:vica_hotel_app/screens/auth/send_otp_screen.dart';
 import 'package:vica_hotel_app/screens/auth/sign_up_screen.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
@@ -12,7 +13,6 @@ import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import 'package:vica_hotel_app/widgets/social_login_button.dart';
-
 import '../../providers/home/home_cubit.dart';
 import '../../utils/navigation_util.dart';
 
@@ -43,20 +43,25 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
+            print(state);
             if (state is AuthSuccess) {
-              context.read<HomeCubit>().currentIndex = 0;
-              NavigationUtil.navigateTo(context, screen: HomeLayout());
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text(state.message)),
-              );
+              context.read<AuthCubit>().getProfile();
             } else if (state is AuthFailure) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.error)),
               );
             }
+            if (state is GetProfileSuccess) {
+              print('This is the user info: ${state.user}');
+              context.read<HomeCubit>().currentIndex = 0;
+              NavigationUtil.navigateTo(context, screen: HomeLayout());
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text(state.message)),
+              );
+            }
           },
           builder: (context, state) {
-            if (state is AuthLoading) {
+            if (state is AuthLoading || state is GetProfileLoading) {
               return const Center(child: CircularProgressIndicator());
             }
             return SingleChildScrollView(
@@ -103,6 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment.centerRight,
                             child: TextButton(
                                 onPressed: () {
+                                  NavigationUtil.navigateTo(context, screen: const SendOtpScreen());
                                 },
                                 child: RalewayText.medium('Forgot password?',
                                     color: AppColors.redColor)),
@@ -113,7 +119,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               Checkbox(
                                 value: rememberMe,
                                 onChanged: (value) {
-                                  rememberMe = value!;
+                                  setState(() {
+                                    rememberMe = value!;
+                                  });
                                 },
                               ),
                               const Text("Remember Me"),

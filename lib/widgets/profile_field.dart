@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
+import '../screens/auth/change_profile_data_screen.dart';
 import '../utils/colors.dart';
 import '../utils/icons.dart';
 import '../utils/responsive_util.dart';
@@ -70,10 +72,15 @@ class ProfileField extends StatelessWidget {
             ),
           ),
           // The edit icon on the right side.
-          SvgPicture.asset(
-              AppIcons.edit,
-              colorFilter: ColorFilter.mode(
-                  Theme.of(context).socialLoginButtonColor, BlendMode.srcIn))
+          GestureDetector(
+            onTap: (){
+              NavigationUtil.navigateTo(context, screen: UpdateProfileScreen(), withRoute: true);
+            },
+            child: SvgPicture.asset(
+                AppIcons.edit,
+                colorFilter: ColorFilter.mode(
+                    Theme.of(context).socialLoginButtonColor, BlendMode.srcIn)),
+          )
           // Image.asset(
           //   AppIcons.edit,
           //   color: Theme.of(context).socialLoginButtonColor,

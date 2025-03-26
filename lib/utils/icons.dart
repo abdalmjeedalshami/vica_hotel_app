@@ -16,6 +16,7 @@ class AppIcons {
   static const String ratingStar = 'assets/icons/rating_star.png';
   static const String search = 'assets/icons/search.svg';
   static const String edit = 'assets/icons/edit.svg';
+  static const String change = 'assets/icons/change.svg';
 
   // Social Media Icons
   static const String google = 'assets/icons/google.svg';
