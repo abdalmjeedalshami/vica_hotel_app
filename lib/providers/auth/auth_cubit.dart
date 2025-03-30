@@ -156,7 +156,6 @@ class AuthCubit extends Cubit<AuthState> {
       // Call AuthService to update profile
       final updatedData = await authService.updateProfile(token!, profileData);
       final newUser = updatedData['data']['user']; // Update the stored user profile
-      print(newUser);
       user!['first_name'] = newUser['first_name'];
       user!['last_name'] = newUser['last_name'];
       user!['user_name'] = newUser['user_name'];

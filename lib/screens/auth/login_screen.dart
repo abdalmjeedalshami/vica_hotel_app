@@ -43,7 +43,6 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
-            print(state);
             if (state is AuthSuccess) {
               context.read<AuthCubit>().getProfile();
             } else if (state is AuthFailure) {
@@ -52,7 +51,6 @@ class _LoginScreenState extends State<LoginScreen> {
               );
             }
             if (state is GetProfileSuccess) {
-              print('This is the user info: ${state.user}');
               context.read<HomeCubit>().currentIndex = 0;
               NavigationUtil.navigateTo(context, screen: HomeLayout());
               ScaffoldMessenger.of(context).showSnackBar(

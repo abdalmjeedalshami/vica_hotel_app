@@ -1,101 +1,85 @@
-import '../models/booking_item_model.dart';
-import 'icons.dart';
+import '../models/room_model.dart';
 import 'images.dart';
 
 /// Dummy data for demonstration.
-final List<BookingItemModel> activeBookings = [
-  BookingItemModel(
-    imagePath: AppImages.room_1,
-    hotelName: 'Hotel Royal',
-    rating: 4.0,
-    price: 190,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-10-10',
-    endDate: '2023-10-15',
-  ),
-  // BookingItemModel(
-  //   imagePath: 'assets/images/room.jpeg',
-  //   hotelName: 'Grand Palace',
-  //   rating: 4.5,
-  //   price: 220,
-  //   featuresIcons: [
-  //     {'iconPath': AppIcons.tv, 'available': true},
-  //     {'iconPath': AppIcons.shower, 'available': false},
-  //     {'iconPath': AppIcons.wifi, 'available': true},
-  //   ],
-  //   startDate: '2023-11-01',
-  //   endDate: '2023-11-05',
-  // ),
+List<Room> activeBookings = [
+  Room(
+      image: AppImages.room_1,
+      name: 'Hotel Royal',
+      rate: 4.0,
+      price: 190,
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]),
 ];
 
-final List<BookingItemModel> pastBookings = [
-  BookingItemModel(
-    imagePath: AppImages.room_1,
-    hotelName: 'Sea View Resort',
-    rating: 4.2,
-    price: 170,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-08-15',
-    endDate: '2023-08-20',
-  ),
-  BookingItemModel(
-    imagePath: AppImages.room_2,
-    hotelName: 'Mountain Inn',
-    rating: 3.8,
+final List<Room> pastBookings = [
+  Room(
+      image: AppImages.room_1,
+      name: 'Sea View Resort',
+      rate: 4.2,
+      price: 170,
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]),
+  Room(
+    image: AppImages.room_2,
+    name: 'Mountain Inn',
+    rate: 3.8,
     price: 140,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-07-05',
-    endDate: '2023-07-10',
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]
   ),
-  BookingItemModel(
-    imagePath: AppImages.room_3,
-    hotelName: 'Sea View Resort',
-    rating: 4.2,
+  Room(
+    image: AppImages.room_3,
+    name: 'Sea View Resort',
+    rate: 4.2,
     price: 170,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-08-15',
-    endDate: '2023-08-20',
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]
   ),
-  BookingItemModel(
-    imagePath: AppImages.room_4,
-    hotelName: 'Mountain Inn',
-    rating: 3.8,
+  Room(
+    image: AppImages.room_4,
+    name: 'Mountain Inn',
+    rate: 3.8,
     price: 140,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-07-05',
-    endDate: '2023-07-10',
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]
   ),
-  BookingItemModel(
-    imagePath: AppImages.room_5,
-    hotelName: 'Sea View Resort',
-    rating: 4.2,
+  Room(
+    image: AppImages.room_5,
+    name: 'Sea View Resort',
+    rate: 4.2,
     price: 170,
-    featuresIcons: [
-      {'iconPath': AppIcons.tv, 'available': true},
-      {'iconPath': AppIcons.shower, 'available': false},
-      {'iconPath': AppIcons.wifi, 'available': true},
-    ],
-    startDate: '2023-08-15',
-    endDate: '2023-08-20',
+      tv: true,
+      shower: true,
+      wifi: false,
+      breakfast: false,
+      available: true,
+      description: 'This is the description',
+      images: [AppImages.room_1, AppImages.room_2, AppImages.room_3]
   ),
 ];

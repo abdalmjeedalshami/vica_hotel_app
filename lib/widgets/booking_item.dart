@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/poppins_text.dart';
-import '../models/booking_item_model.dart';
+import '../models/room_model.dart';
 import '../utils/responsive_util.dart';
 
 /// Custom widget that displays an individual booking item.
-class BookingItemWidget extends StatelessWidget {
-  final BookingItemModel booking;
+class BookingRoomCard extends StatelessWidget {
+  final Room room;
 
-  const BookingItemWidget({Key? key, required this.booking}) : super(key: key);
+  const BookingRoomCard({Key? key, required this.room}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ class BookingItemWidget extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(2),
               child: Image.asset(
-                booking.imagePath,
+                room.image,
                 width: 100,
                 height: 100,
                 fit: BoxFit.cover,
@@ -44,7 +45,7 @@ class BookingItemWidget extends StatelessWidget {
                     children: [
                       Expanded(
                           child: PoppinsText(
-                              text: booking.hotelName,
+                              text: room.name,
                               style: const TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w500,
@@ -54,7 +55,7 @@ class BookingItemWidget extends StatelessWidget {
                       Row(
                         children: List.generate(5, (index) {
                           return Icon(
-                            index < booking.rating
+                            index < room.rate
                                 ? Icons.star
                                 : Icons.star_border,
                             color: Colors.orange,
@@ -66,16 +67,16 @@ class BookingItemWidget extends StatelessWidget {
                   ),
                   SizedBox(height: responsive(context, 5)),
                   // Price
-                  PoppinsText.medium('\$${booking.price.toStringAsFixed(0)}',
+                  PoppinsText.medium('\$${room.price.toStringAsFixed(2)}',
                       fontSize: responsive(context, 12),
                       color: Theme.of(context).unselectedItemColor),
                   const SizedBox(height: 8),
 
                   Row(
-                    children: booking.featuresIcons.map((feature) {
-                      return Padding(
+                    children: [
+                      Padding(
                           padding:
-                              EdgeInsets.only(right: responsive(context, 8)),
+                          EdgeInsets.only(right: responsive(context, 8)),
                           child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).unselectedTitlesSlider,
@@ -83,15 +84,52 @@ class BookingItemWidget extends StatelessWidget {
                               ),
                               child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: SvgPicture.asset(feature['iconPath'],
+                                  child: SvgPicture.asset(AppIcons.tv,
                                       width: 10,
                                       height: 10,
                                       colorFilter: ColorFilter.mode(
-                                          feature['available']
+                                          room.available
                                               ? Colors.blue
                                               : Colors.grey,
-                                          BlendMode.srcIn)))));
-                    }).toList(),
+                                          BlendMode.srcIn))))),
+                      Padding(
+                          padding:
+                          EdgeInsets.only(right: responsive(context, 8)),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).unselectedTitlesSlider,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(AppIcons.shower,
+                                      width: 10,
+                                      height: 10,
+                                      colorFilter: ColorFilter.mode(
+                                          room.available
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                          BlendMode.srcIn))))),
+                      Padding(
+                          padding:
+                          EdgeInsets.only(right: responsive(context, 8)),
+                          child: Container(
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).unselectedTitlesSlider,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(AppIcons.wifi,
+                                      width: 10,
+                                      height: 10,
+                                      colorFilter: ColorFilter.mode(
+                                          room.available
+                                              ? Colors.blue
+                                              : Colors.grey,
+                                          BlendMode.srcIn)))))
+
+                    ],
                   ),
                   const SizedBox(height: 8),
                   // Start and End dates
@@ -101,7 +139,7 @@ class BookingItemWidget extends StatelessWidget {
                           size: 14, color: Colors.grey),
                       const SizedBox(width: 4),
                       Text(
-                        booking.startDate,
+                        '2023-10-10',
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 12),
                       ),
@@ -112,7 +150,7 @@ class BookingItemWidget extends StatelessWidget {
                       ),
                       const SizedBox(width: 8),
                       Text(
-                        booking.endDate,
+                        '2023-12-10',
                         style:
                             const TextStyle(color: Colors.grey, fontSize: 12),
                       ),

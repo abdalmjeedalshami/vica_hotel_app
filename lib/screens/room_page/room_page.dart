@@ -1,30 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:vica_hotel_app/providers/room_provider.dart';
+import 'package:vica_hotel_app/providers/room_state.dart';
+import 'package:vica_hotel_app/services/database_helper.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
-import 'package:vica_hotel_app/utils/images.dart';
+import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
-import 'package:vica_hotel_app/widgets/custom_button.dart';
+import '../../models/room_model.dart';
+import '../../utils/constants.dart';
 import '../../utils/icons.dart';
 import '../../utils/responsive_util.dart';
 import '../../widgets/poppins_text.dart';
 
 class RoomPage extends StatelessWidget {
-  final String imagePath;
-  final String roomName;
-  final double rating;
-  final double price;
-  final List<Map<String, dynamic>> featuresIcons;
+  final Room room;
 
-  const RoomPage({
-    super.key,
-    required this.imagePath,
-    required this.roomName,
-    required this.rating,
-    required this.price,
-    required this.featuresIcons,
-    required bool
-        isAvailable, // Example: [{'iconPath': 'assets/icons/wifi.png', 'available': true}]
-  }); // List containing icon paths and availability
+  const RoomPage(
+      {super.key,
+      required this.room}); // List containing icon paths and availability
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +33,7 @@ class RoomPage extends StatelessWidget {
                 height: responsive(context, 450),
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage(imagePath), fit: BoxFit.cover),
+                      image: AssetImage(room.image), fit: BoxFit.cover),
                 ),
               ),
               // Filter
@@ -124,7 +118,7 @@ class RoomPage extends StatelessWidget {
                           children: [
                             // Room name
                             Expanded(
-                              child: PoppinsText.semiBold(roomName,
+                              child: PoppinsText.semiBold(room.name,
                                   fontSize: responsive(context, 25),
                                   color: AppColors.white),
                             ),
@@ -132,7 +126,7 @@ class RoomPage extends StatelessWidget {
                             Row(
                               children: List.generate(5, (index) {
                                 return Icon(
-                                  index < rating
+                                  index < room.rate
                                       ? Icons.star
                                       : Icons.star_border,
                                   color: Colors.orange,
@@ -146,19 +140,23 @@ class RoomPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            PoppinsText.medium('\$$price/night',
+                            PoppinsText.medium(
+                                '\$${room.price.toStringAsFixed(2)}/night',
                                 fontSize: responsive(context, 18),
                                 color: AppColors.white),
-                            PoppinsText.semiBold('Available',
+                            PoppinsText.semiBold(
+                                room.available ? 'Available' : 'Unavailable',
                                 fontSize: responsive(context, 10),
-                                color: AppColors.white),
+                                color: room.available
+                                    ? AppColors.white
+                                    : AppColors.redColor),
                           ],
                         ),
                         // Features Icons
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: featuresIcons.map((feature) {
-                            return Padding(
+                          children: [
+                            Padding(
                               padding: EdgeInsets.only(
                                   right: responsive(context, 8)),
                               child: Column(
@@ -169,35 +167,122 @@ class RoomPage extends StatelessWidget {
                                       shape: BoxShape.circle,
                                     ),
                                     child: Padding(
-                                      padding: EdgeInsets.all(responsive(context, 12)),
+                                      padding: EdgeInsets.all(
+                                          responsive(context, 12)),
                                       child: SvgPicture.asset(
-                                        feature['iconPath'],
+                                        AppIcons.tv,
                                         height: responsive(context, 25),
                                         width: responsive(context, 25),
                                         colorFilter: ColorFilter.mode(
-                                            feature['available']
+                                            room.tv ? Colors.blue : Colors.grey,
+                                            BlendMode.srcIn),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: responsive(context, 5)),
+                                  PoppinsText.medium('TV',
+                                      fontSize: responsive(context, 8),
+                                      color: AppColors.white)
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right: responsive(context, 8)),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          responsive(context, 12)),
+                                      child: SvgPicture.asset(
+                                        AppIcons.shower,
+                                        height: responsive(context, 25),
+                                        width: responsive(context, 25),
+                                        colorFilter: ColorFilter.mode(
+                                            room.shower
                                                 ? Colors.blue
                                                 : Colors.grey,
                                             BlendMode.srcIn),
                                       ),
                                     ),
-                                    // child: Image.asset(
-                                    //   feature['iconPath'],
-                                    //   width: responsive(context, 57),
-                                    //   height: responsive(context, 57),
-                                    //   color: feature['available']
-                                    //       ? Colors.blue // Blue for available
-                                    //       : Colors.grey, // Gray for unavailable
-                                    // ),
                                   ),
                                   SizedBox(height: responsive(context, 5)),
-                                  PoppinsText.medium(feature['featureName'],
+                                  PoppinsText.medium('Shower',
                                       fontSize: responsive(context, 8),
                                       color: AppColors.white)
                                 ],
                               ),
-                            );
-                          }).toList(),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right: responsive(context, 8)),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          responsive(context, 12)),
+                                      child: SvgPicture.asset(
+                                        AppIcons.wifi,
+                                        height: responsive(context, 25),
+                                        width: responsive(context, 25),
+                                        colorFilter: ColorFilter.mode(
+                                            room.wifi
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                            BlendMode.srcIn),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: responsive(context, 5)),
+                                  PoppinsText.medium('Wifi',
+                                      fontSize: responsive(context, 8),
+                                      color: AppColors.white)
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.only(
+                                  right: responsive(context, 8)),
+                              child: Column(
+                                children: [
+                                  Container(
+                                    decoration: const BoxDecoration(
+                                      color: AppColors.white,
+                                      shape: BoxShape.circle,
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(
+                                          responsive(context, 12)),
+                                      child: SvgPicture.asset(
+                                        AppIcons.breakfast,
+                                        height: responsive(context, 25),
+                                        width: responsive(context, 25),
+                                        colorFilter: ColorFilter.mode(
+                                            room.breakfast
+                                                ? Colors.blue
+                                                : Colors.grey,
+                                            BlendMode.srcIn),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: responsive(context, 5)),
+                                  PoppinsText.medium('Breakfast',
+                                      fontSize: responsive(context, 8),
+                                      color: AppColors.white)
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -221,8 +306,7 @@ class RoomPage extends StatelessWidget {
                   color: Theme.of(context).socialLoginButtonColor,
                 ),
                 // Description
-                PoppinsText.regular(
-                    'The elegant luxury bedrooms in this gallery showcase custom interior designs & decorating ideas. View pictures and find your perfect luxury bedroom design.',
+                PoppinsText.regular(room.description,
                     fontSize: responsive(context, 13),
                     color: Theme.of(context).customTextFieldIconColor,
                     overflow: TextOverflow.visible),
@@ -233,7 +317,7 @@ class RoomPage extends StatelessWidget {
           SizedBox(
             height: responsive(context, 130),
             child: ListView.builder(
-              itemCount: 3,
+              itemCount: room.images.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.only(left: 16),
@@ -242,18 +326,64 @@ class RoomPage extends StatelessWidget {
                   width: responsive(context, 130),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      image: const DecorationImage(
-                          image: AssetImage(AppImages.room_1),
+                      image: DecorationImage(
+                          image: AssetImage(room.images[index]),
                           fit: BoxFit.cover)),
                 ),
               ),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: responsive(context, 16),
-                vertical: responsive(context, 33)),
-            child: const CustomButton(text: 'Book room'),
+          // Padding(
+          //   padding: EdgeInsets.symmetric(
+          //       horizontal: responsive(context, 16),
+          //       vertical: responsive(context, 33)),
+          //   child: CustomButton(
+          //     text: 'Book room',
+          //     color: Colors.red,
+          //     textColor: Colors.red,
+          //   ),
+          // ),
+          BlocBuilder<RoomCubit, RoomState>(
+            builder: (context, state) {
+              return Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: responsive(context, 16),
+                    vertical: responsive(context, 33)),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: responsive(context, 55),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(4),
+                      ),
+                      backgroundColor: room.available
+                          ? Theme.of(context).primaryColor
+                          : AppColors.darkGray_1,
+                      foregroundColor:
+                          room.available ? AppColors.white : AppColors.white,
+                    ),
+                    onPressed: () {
+                      DatabaseHelper.updateRoomStatus(
+                          id: room.id!,
+                          status:
+                              room.status == 'booked' ? 'available' : 'booked').then((value) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(room.status == 'booked' ? 'Booked canceled' : 'Room booked')));
+                        NavigationUtil.popScreen(context);
+                                context.read<RoomCubit>().fetchRooms();
+                      });
+                    },
+                    child: Text(
+                      room.status == 'booked' ? 'Cancel booking' : 'Book room',
+                      style: TextStyle(
+                          fontFamily: 'Raleway',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ),
+                ),
+              );
+            },
           )
         ],
       ),

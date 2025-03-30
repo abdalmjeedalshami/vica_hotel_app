@@ -4,12 +4,22 @@ import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_state.dart';
+import 'package:vica_hotel_app/providers/room_provider.dart';
 import 'package:vica_hotel_app/screens/flash_screen.dart';
 import 'package:vica_hotel_app/services/auth_service.dart';
+import 'package:vica_hotel_app/services/database_helper.dart';
+import 'package:vica_hotel_app/utils/images.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
+import 'models/room_model.dart';
 
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  final databaseHelper = DatabaseHelper.instance;
+
+  // Add sample rooms
+  // addSampleRooms(databaseHelper);
+
   runApp(const MyApp());
 }
 
@@ -24,7 +34,8 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => MainCubit()),
         BlocProvider(create: (_) => HomeCubit()),
-        BlocProvider(create: (_) => AuthCubit(AuthService()))
+        BlocProvider(create: (_) => AuthCubit(AuthService())),
+        BlocProvider(create: (_) => RoomCubit(DatabaseHelper.instance)..fetchRooms()..addSampleRooms(DatabaseHelper.instance))
       ],
       child: BlocBuilder<MainCubit, MainState>(
         builder: (context, state) {

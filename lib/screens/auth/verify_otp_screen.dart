@@ -11,13 +11,13 @@ import 'change_password_screen.dart';
 class VerifyOtpScreen extends StatefulWidget {
   final String email;
 
-  VerifyOtpScreen({super.key, required this.email});
+  const VerifyOtpScreen({super.key, required this.email});
 
   @override
-  State<VerifyOtpScreen> createState() => _VerifyOtpScreenState();
+  State<VerifyOtpScreen> createState() => VerifyOtpScreenState();
 }
 
-class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
+class VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController otpController = TextEditingController();
 
 
@@ -43,8 +43,6 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            print(state.data);
-            print('This is the token: ${context.read<AuthCubit>().token}');
             NavigationUtil.navigateTo(context, screen: const ChangePasswordScreen());
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),

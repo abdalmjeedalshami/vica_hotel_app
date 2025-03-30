@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/widgets/app_bar.dart';
 import 'package:vica_hotel_app/widgets/rooms_slider.dart';
 import 'package:vica_hotel_app/widgets/search_field.dart';
 import 'package:vica_hotel_app/widgets/titles_slider.dart';
+import '../../../providers/room_provider.dart';
+import '../../../providers/room_state.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/responsive_util.dart';
 
@@ -33,12 +36,14 @@ class _RoomsScreenState extends State<RoomsScreen> {
       appBar: appBar(context),
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(top: responsive(context, 16), bottom: responsive(context, 50)),
+          padding: EdgeInsets.only(
+              top: responsive(context, 16), bottom: responsive(context, 50)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: responsive(context, 16)),
+                padding:
+                    EdgeInsets.symmetric(horizontal: responsive(context, 16)),
                 child: SearchField(controller: searchController),
               ),
 
@@ -47,9 +52,35 @@ class _RoomsScreenState extends State<RoomsScreen> {
               SizedBox(height: responsive(context, 16)),
 
               // Horizontal room slider of vertical room cards
-              roomsSlider(context),
+              BlocBuilder<RoomCubit, RoomState>(
+                builder: (context, state) {
+                  if (state is RoomLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is RoomLoaded && state.rooms.isEmpty) {
+                    return const Center(child: Text('No rooms available'));
+                  } else if (state is RoomError) {
+                    return Center(child: Text(state.message));
+                  } else if (state is RoomLoaded) {
+                    return roomsSlider(context, rooms: state.rooms);
+                  }
+                  return const Center(child: Text("No rooms available"));
+                },
+              ),
               SizedBox(height: responsive(context, 12)),
-              roomsSlider(context, controller: scrollController)
+              BlocBuilder<RoomCubit, RoomState>(
+                builder: (context, state) {
+                  if (state is RoomLoading) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (state is RoomLoaded && state.rooms.isEmpty) {
+                    return const Center(child: Text('No rooms available'));
+                  } else if (state is RoomError) {
+                    return Center(child: Text(state.message));
+                  } else if (state is RoomLoaded) {
+                    return roomsSlider(context, rooms: state.rooms, controller: scrollController);
+                  }
+                  return const Center(child: Text("No rooms available"));
+                },
+              ),
             ],
           ),
         ),

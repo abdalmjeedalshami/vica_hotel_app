@@ -74,7 +74,7 @@ class ProfileField extends StatelessWidget {
           // The edit icon on the right side.
           GestureDetector(
             onTap: (){
-              NavigationUtil.navigateTo(context, screen: UpdateProfileScreen(), withRoute: true);
+              NavigationUtil.navigateTo(context, screen: const UpdateProfileScreen(), withRoute: true);
             },
             child: SvgPicture.asset(
                 AppIcons.edit,

@@ -5,11 +5,13 @@ import '../utils/colors.dart';
 import '../utils/responsive_util.dart';
 
 class ToggleButton extends StatelessWidget {
+  final String text;
   final bool isSelected; // Pass the selected state
   final VoidCallback onTap; // Pass the tap callback
 
   const ToggleButton({
     Key? key,
+    required this.text,
     required this.isSelected,
     required this.onTap,
   }) : super(key: key);
@@ -28,7 +30,7 @@ class ToggleButton extends StatelessWidget {
           ),
           child: Center(
             child: RalewayText.medium(
-              'Active',
+              text,
               color: isSelected
                   ? AppColors.white
                   : Theme.of(context).toggleBookingButtonText,

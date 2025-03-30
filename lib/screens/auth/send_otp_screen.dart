@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/auth/auth_state.dart';
-import 'package:vica_hotel_app/screens/auth/verify_otp_Screen.dart';
+import 'package:vica_hotel_app/screens/auth/verify_otp_screen.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/custom_button.dart';

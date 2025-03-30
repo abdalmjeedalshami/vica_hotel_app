@@ -47,11 +47,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           if (state is AuthImageUploaded || state is GetProfileSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('state.message')),
+              const SnackBar(content: Text('state.message')),
             );
           } else if (state is GetProfileFailure || state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('state.error')),
+              const SnackBar(content: Text('state.error')),
             );
           } else if (state is AuthSuccess) {
             NavigationUtil.navigateTo(context, screen: const LoginScreen());

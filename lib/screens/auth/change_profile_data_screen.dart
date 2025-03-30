@@ -7,11 +7,13 @@ import '../../providers/auth/auth_state.dart';
 import '../../providers/home/home_cubit.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
+  const UpdateProfileScreen({super.key});
+
   @override
-  _UpdateProfileScreenState createState() => _UpdateProfileScreenState();
+  UpdateProfileScreenState createState() => UpdateProfileScreenState();
 }
 
-class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+class UpdateProfileScreenState extends State<UpdateProfileScreen> {
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
   final TextEditingController userNameController = TextEditingController();
@@ -30,7 +32,6 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
       appBar: AppBar(title: const Text("Update Profile")),
       body: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
-          print(state);
           if (state is AuthProfileUpdated) {
             context.read<HomeCubit>().currentIndex = 3;
             NavigationUtil.navigateTo(context, screen: HomeLayout());

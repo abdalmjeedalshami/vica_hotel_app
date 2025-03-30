@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:vica_hotel_app/providers/room_provider.dart';
+import 'package:vica_hotel_app/providers/room_state.dart';
+import 'package:vica_hotel_app/screens/room_page/room_page.dart';
+import 'package:vica_hotel_app/services/database_helper.dart';
+import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/active_tab.dart';
 import 'package:vica_hotel_app/widgets/app_bar.dart';
 import '../../../models/booking_item_model.dart';
+import '../../../models/room_model.dart';
 import '../../../utils/constants.dart';
 import '../../../widgets/booking_item.dart';
 
@@ -21,8 +28,11 @@ class BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     // Choose which list to display based on the toggle state.
-    List<BookingItemModel> bookings =
-        _selectedTab == 0 ? activeBookings : pastBookings;
+    List<Room> bookedList = context.read<RoomCubit>().booked;
+    List<Room> pastList = context.read<RoomCubit>().past;
+    // List<Room> rooms =
+    //     _selectedTab == 0 ? activeBookings : pastBookings;
+    List<Room> rooms = _selectedTab == 0 ? bookedList : pastList;
 
     return Scaffold(
       appBar: appBar(context),
@@ -30,7 +40,7 @@ class BookingScreenState extends State<BookingScreen> {
         children: [
           // Toggle Section: Active & Past
           Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: EdgeInsets.all(responsive(context, 16)),
               child: Container(
                   decoration: BoxDecoration(
                     color: Theme.of(context).toggleBookingButton,
@@ -40,6 +50,7 @@ class BookingScreenState extends State<BookingScreen> {
                   child: Row(children: [
                     // Active Toggle
                     ToggleButton(
+                        text: 'Active',
                         isSelected: _selectedTab == 0,
                         onTap: () {
                           setState(() {
@@ -50,6 +61,7 @@ class BookingScreenState extends State<BookingScreen> {
                     // Past Toggle
                     ToggleButton(
                         isSelected: _selectedTab == 1,
+                        text: 'Past',
                         onTap: () {
                           setState(() {
                             _selectedTab = 1;
@@ -58,11 +70,20 @@ class BookingScreenState extends State<BookingScreen> {
                   ]))),
           // List of Booking Items
           Expanded(
-            child: ListView.builder(
-              itemCount: bookings.length,
-              itemBuilder: (context, index) {
-                final booking = bookings[index];
-                return BookingItemWidget(booking: booking);
+            child: BlocBuilder<RoomCubit, RoomState>(
+              builder: (context, state) {
+                return ListView.builder(
+                  itemCount: rooms.length,
+                  itemBuilder: (context, index) {
+                    final room = rooms[index];
+                    return GestureDetector(
+                        onTap: () {
+                          NavigationUtil.navigateTo(context,
+                              screen: RoomPage(room: room), withRoute: true);
+                        },
+                        child: BookingRoomCard(room: room));
+                  },
+                );
               },
             ),
           ),
