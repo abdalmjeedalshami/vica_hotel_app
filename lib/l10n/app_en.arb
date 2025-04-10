@@ -1,0 +1,162 @@
+{
+  "language": "English",
+  "@language": {
+    "description": "The current Language"
+  },
+  "hello": "Hello",
+  "@Hello": {
+    "description": "Hello world"
+  },
+  "login": "Login",
+  "@login": {
+    "description": "Login word"
+  },
+  "sign_up": "Sign-Up",
+  "@sign_up": {
+    "description": "sign-up word"
+  },
+  "logout": "Logout",
+  "@logout": {
+    "description": "Email word"
+  },
+  "are_you_sure": "Are you sure?",
+  "@are_you_sure": {
+    "description": "Email word"
+  },
+  "cancel": "Cancel",
+  "@cancel": {
+    "description": "Email word"
+  },
+  "remember_me": "Remember me",
+  "@remember_me": {
+    "description": "Email word"
+  },
+  "forgot_password": "Forgot password",
+  "@forgot_password": {
+    "description": "Email word"
+  },
+  "password": "Password",
+  "@password": {
+    "description": "Email word"
+  },
+  "password_confirmation": "Password confirmation",
+  "@password_confirmation": {
+    "description": "Email word"
+  },
+  "otp": "OTP",
+  "@otp": {
+    "description": "Email word"
+  },
+  "register_now": "Register now",
+  "@register_now": {
+    "description": "Email word"
+  },
+  "or": "Or",
+  "@or": {
+    "description": "Email word"
+  },
+  "continue_with_apple": "Continue with apple",
+  "@continue_with_apple": {
+    "description": "Email word"
+  },
+  "continue_with_google": "Continue with google",
+  "@continue_with_google": {
+    "description": "Email word"
+  },
+  "delete_my_account": "Delete my account",
+  "@delete_my_account": {
+    "description": "Email word"
+  },
+  "email": "Email",
+  "@email": {
+    "description": "Email word"
+  },
+  "theme": "Theme",
+  "@theme": {
+    "description": ""
+  },
+  "add_rooms": "Add some rooms",
+  "@add_rooms": {
+    "description": "Hello world"
+  },
+  "profile": "Profile",
+  "@profile": {
+    "description": "Login word"
+  },
+  "search_field_hint": "Search for out nearby hotel",
+  "@search_field_hint": {
+    "description": "sign-up word"
+  },
+  "welcome_card_title": "A Hotel for every moment rich in emotion",
+  "@welcome_card_title": {
+    "description": "Email word"
+  },
+  "book_now": "Book now",
+  "@book_now": {
+    "description": "Hello world"
+  },
+  "choose_a_room": "Choose a room",
+  "@choose_a_room": {
+    "description": "Login word"
+  },
+  "view_all": "View all",
+  "@view_all": {
+    "description": "sign-up word"
+  },
+  "available": "Available",
+  "@available": {
+    "description": "Email word"
+  },
+  "unavailable": "Unavailable",
+  "@unavailable": {
+    "description": "Email word"
+  },
+  "night": "Night",
+  "@night": {
+    "description": "Email word"
+  },
+  "home": "Home",
+  "@home": {
+    "description": "Email word"
+  },
+  "booking": "Booking",
+  "@booking": {
+    "description": "Email word"
+  },
+  "rooms": "Rooms",
+  "@rooms": {
+    "description": "Email word"
+  },
+  "account": "Account",
+  "@account": {
+    "description": "Email word"
+  },
+  "active": "Active",
+  "@active": {
+    "description": "Email word"
+  },
+  "past": "Past",
+  "@past": {
+    "description": "Email word"
+  },
+  "first_name": "First name",
+  "@first_name": {
+    "description": "Email word"
+  },
+  "last_name": "last_name",
+  "@last_name": {
+    "description": "Email word"
+  },
+  "username": "Username",
+  "@username": {
+    "description": "Email word"
+  },
+  "full_name": "Full name",
+  "@full_name": {
+    "description": "Email word"
+  },
+  "phone_number": "Phone number",
+  "@phone_number": {
+    "description": "Email word"
+  }
+}

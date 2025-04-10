@@ -5,6 +5,8 @@ import 'package:vica_hotel_app/utils/navigation_util.dart';
 import '../../providers/auth/auth_cubit.dart';
 import '../../providers/auth/auth_state.dart';
 import '../../providers/home/home_cubit.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -28,6 +30,7 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(title: const Text("Update Profile")),
       body: BlocConsumer<AuthCubit, AuthState>(
@@ -55,15 +58,15 @@ class UpdateProfileScreenState extends State<UpdateProfileScreen> {
               children: [
                 TextFormField(
                   controller: firstNameController,
-                  decoration: const InputDecoration(labelText: "First Name"),
+                  decoration: InputDecoration(labelText: locale.first_name),
                 ),
                 TextFormField(
                   controller: lastNameController,
-                  decoration: const InputDecoration(labelText: "Last Name"),
+                  decoration: InputDecoration(labelText: locale.last_name),
                 ),
                 TextFormField(
                   controller: userNameController,
-                  decoration: const InputDecoration(labelText: "Username"),
+                  decoration: InputDecoration(labelText: locale.username),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(

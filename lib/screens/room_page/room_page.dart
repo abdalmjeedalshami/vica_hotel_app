@@ -8,10 +8,10 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import '../../models/room_model.dart';
-import '../../utils/constants.dart';
 import '../../utils/icons.dart';
 import '../../utils/responsive_util.dart';
 import '../../widgets/poppins_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RoomPage extends StatelessWidget {
   final Room room;
@@ -22,6 +22,8 @@ class RoomPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
+
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -141,11 +143,11 @@ class RoomPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             PoppinsText.medium(
-                                '\$${room.price.toStringAsFixed(2)}/night',
+                                '\$${room.price.toStringAsFixed(2)}/${locale.night}',
                                 fontSize: responsive(context, 18),
                                 color: AppColors.white),
                             PoppinsText.semiBold(
-                                room.available ? 'Available' : 'Unavailable',
+                                room.available ? locale.available : locale.unavailable,
                                 fontSize: responsive(context, 10),
                                 color: room.available
                                     ? AppColors.white
@@ -333,16 +335,6 @@ class RoomPage extends StatelessWidget {
               ),
             ),
           ),
-          // Padding(
-          //   padding: EdgeInsets.symmetric(
-          //       horizontal: responsive(context, 16),
-          //       vertical: responsive(context, 33)),
-          //   child: CustomButton(
-          //     text: 'Book room',
-          //     color: Colors.red,
-          //     textColor: Colors.red,
-          //   ),
-          // ),
           BlocBuilder<RoomCubit, RoomState>(
             builder: (context, state) {
               return Padding(
@@ -367,15 +359,15 @@ class RoomPage extends StatelessWidget {
                       DatabaseHelper.updateRoomStatus(
                           id: room.id!,
                           status:
-                              room.status == 'booked' ? 'available' : 'booked').then((value) {
+                              room.status == 'booked' ? locale.available : 'booked').then((value) {
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(room.status == 'booked' ? 'Booked canceled' : 'Room booked')));
                         NavigationUtil.popScreen(context);
                                 context.read<RoomCubit>().fetchRooms();
                       });
                     },
                     child: Text(
-                      room.status == 'booked' ? 'Cancel booking' : 'Book room',
-                      style: TextStyle(
+                      room.status == 'booked' ? locale.cancel : locale.book_now,
+                      style: const TextStyle(
                           fontFamily: 'Raleway',
                           fontSize: 17,
                           fontWeight: FontWeight.w500),

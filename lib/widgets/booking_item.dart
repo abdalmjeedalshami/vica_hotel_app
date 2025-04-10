@@ -133,26 +133,26 @@ class BookingRoomCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   // Start and End dates
-                  Row(
+                  const Row(
                     children: [
-                      const Icon(Icons.calendar_today,
+                      Icon(Icons.calendar_today,
                           size: 14, color: Colors.grey),
-                      const SizedBox(width: 4),
+                      SizedBox(width: 4),
                       Text(
                         '2023-10-10',
                         style:
-                            const TextStyle(color: Colors.grey, fontSize: 12),
+                            TextStyle(color: Colors.grey, fontSize: 12),
                       ),
-                      const SizedBox(width: 8),
-                      const Text(
+                      SizedBox(width: 8),
+                      Text(
                         '-',
                         style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         '2023-12-10',
                         style:
-                            const TextStyle(color: Colors.grey, fontSize: 12),
+                            TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),

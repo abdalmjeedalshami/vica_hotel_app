@@ -9,6 +9,8 @@ import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import '../../utils/navigation_util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class SendOtpScreen extends StatefulWidget {
 
@@ -19,6 +21,7 @@ class SendOtpScreen extends StatefulWidget {
 
 class _SendOtpScreenState extends State<SendOtpScreen> {
   final TextEditingController emailController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -30,6 +33,7 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
   // Default state for rememberMe checkbox
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
@@ -54,55 +58,67 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                         left: responsive(context, 24),
                         right: responsive(context, 24),
                         top: responsive(context, 140)),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // Logo
-                          SvgPicture.asset(
-                            AppIcons.logo,
-                            colorFilter: ColorFilter.mode(
-                                Theme
-                                    .of(context)
-                                    .primaryColor, BlendMode.srcIn),
-                          ),
-                          // Replace with your logo
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Logo
+                            SvgPicture.asset(
+                              AppIcons.logo,
+                              colorFilter: ColorFilter.mode(
+                                  Theme
+                                      .of(context)
+                                      .primaryColor, BlendMode.srcIn),
+                            ),
+                            // Replace with your logo
 
-                          SizedBox(height: responsive(context, 60)),
+                            SizedBox(height: responsive(context, 60)),
 
-                          // Password TextField
-                          customTextField(context,
-                              controller: emailController,
-                              hintText: 'Email',
+                            // Email TextField
+                            ValidatedFieldWrapper(
+                              hintText: locale.email,
                               prefix: AppIcons.email,
-                              type: TextInputType.emailAddress),
+                              controller: emailController,
+                              type: TextInputType.emailAddress,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) return 'Email required';
+                                if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(value)) return 'Invalid email';
+                                return null;
+                              },
+                            ),
 
-                          SizedBox(height: responsive(context, 10)),
+                            SizedBox(height: responsive(context, 10)),
 
-                          // Send otp Button
-                          CustomButton(
-                            text: 'Send OTP',
-                            onPressed: () {
-                              final email = emailController.text;
-                              if (email.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Email is required")),
-                                );
-                                return;
-                              }
+                            // Send otp Button
+                            CustomButton(
+                              text: locale.otp,
+                              onPressed: () {
+                                final email = emailController.text;
 
-                              if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").hasMatch(email)) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Invalid email format")),
-                                );
-                                return;
-                              }
+                                if (formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().sendOtp(email);
+                                } else {}
 
-                              context.read<AuthCubit>().sendOtp(email);
-                            },
-                            // goTo: HomeLayout(),
-                          ),
-                        ])));
+                                if (email.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text("Email is required")),
+                                  );
+                                  return;
+                                }
+
+                                if (!RegExp(r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$").hasMatch(email)) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text("Invalid email format")),
+                                  );
+                                  return;
+                                }
+                                },
+                              // goTo: HomeLayout(),
+                            ),
+                          ]),
+                    )));
           },
         ));
   }

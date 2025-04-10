@@ -3,16 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/providers/room_provider.dart';
 import 'package:vica_hotel_app/providers/room_state.dart';
 import 'package:vica_hotel_app/screens/room_page/room_page.dart';
-import 'package:vica_hotel_app/services/database_helper.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/active_tab.dart';
 import 'package:vica_hotel_app/widgets/app_bar.dart';
-import '../../../models/booking_item_model.dart';
 import '../../../models/room_model.dart';
-import '../../../utils/constants.dart';
 import '../../../widgets/booking_item.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);
@@ -33,6 +31,7 @@ class BookingScreenState extends State<BookingScreen> {
     // List<Room> rooms =
     //     _selectedTab == 0 ? activeBookings : pastBookings;
     List<Room> rooms = _selectedTab == 0 ? bookedList : pastList;
+    final locale = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: appBar(context),
@@ -50,7 +49,7 @@ class BookingScreenState extends State<BookingScreen> {
                   child: Row(children: [
                     // Active Toggle
                     ToggleButton(
-                        text: 'Active',
+                        text: locale.active,
                         isSelected: _selectedTab == 0,
                         onTap: () {
                           setState(() {
@@ -61,7 +60,7 @@ class BookingScreenState extends State<BookingScreen> {
                     // Past Toggle
                     ToggleButton(
                         isSelected: _selectedTab == 1,
-                        text: 'Past',
+                        text: locale.past,
                         onTap: () {
                           setState(() {
                             _selectedTab = 1;

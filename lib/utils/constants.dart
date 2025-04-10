@@ -1,6 +1,7 @@
 import '../models/room_model.dart';
 import 'images.dart';
 
+
 /// Dummy data for demonstration.
 List<Room> activeBookings = [
   Room(

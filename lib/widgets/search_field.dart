@@ -25,7 +25,7 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        NavigationUtil.navigateTo(context, screen: SearchPage(), withRoute: true);
+        NavigationUtil.navigateTo(context, screen: const SearchPage(), withRoute: true);
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: responsive(context, 20)),

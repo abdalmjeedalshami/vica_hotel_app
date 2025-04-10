@@ -11,6 +11,8 @@ import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../../utils/navigation_util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class DeleteAccountScreen extends StatefulWidget {
 
@@ -32,6 +34,7 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
   // Default state for rememberMe checkbox
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
     return Scaffold(
         body: BlocConsumer<AuthCubit, AuthState>(
           listener: (context, state) {
@@ -87,13 +90,13 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                             child: TextButton(
                                 onPressed: () {
                                 },
-                                child: RalewayText.medium('Forgot password?',
+                                child: RalewayText.medium(locale.forgot_password,
                                     color: AppColors.redColor)),
                           ),
 
                           // Delete Button
                           CustomButton(
-                            text: 'Delete my account',
+                            text: locale.delete_my_account,
                             onPressed: () {
                               final password = passwordController.text;
 

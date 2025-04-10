@@ -9,7 +9,7 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../providers/home/home_cubit.dart';
 import '../../providers/home/home_state.dart';
 
@@ -25,6 +25,7 @@ class HomeLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         HomeCubit homeCubit = context.read<HomeCubit>();
@@ -56,7 +57,8 @@ class HomeLayout extends StatelessWidget {
                               ? AppColors.primary
                               : Theme.of(context).unselectedItemColor,
                           BlendMode.srcIn)),
-                  label: 'Home',
+                  label: locale.home,
+                  tooltip: locale.home
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(AppIcons.booking,
@@ -65,7 +67,8 @@ class HomeLayout extends StatelessWidget {
                               ? AppColors.primary
                               : Theme.of(context).unselectedItemColor,
                           BlendMode.srcIn)),
-                  label: 'Booking',
+                  label: locale.booking,
+                  tooltip: locale.booking
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(AppIcons.rooms,
@@ -74,7 +77,8 @@ class HomeLayout extends StatelessWidget {
                               ? AppColors.primary
                               : Theme.of(context).unselectedItemColor,
                           BlendMode.srcIn)),
-                  label: 'Rooms',
+                  label: locale.rooms,
+                  tooltip: locale.rooms
                 ),
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(AppIcons.person,
@@ -83,7 +87,8 @@ class HomeLayout extends StatelessWidget {
                               ? AppColors.primary
                               : Theme.of(context).unselectedItemColor,
                           BlendMode.srcIn)),
-                  label: 'Account',
+                  label: locale.account,
+                  tooltip: locale.account
                 )
               ],
             ));

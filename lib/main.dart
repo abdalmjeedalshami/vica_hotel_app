@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:vica_hotel_app/l10n/l10n.dart';
 import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/home/home_cubit.dart';
 import 'package:vica_hotel_app/providers/main/main_cubit.dart';
@@ -8,14 +10,11 @@ import 'package:vica_hotel_app/providers/room_provider.dart';
 import 'package:vica_hotel_app/screens/flash_screen.dart';
 import 'package:vica_hotel_app/services/auth_service.dart';
 import 'package:vica_hotel_app/services/database_helper.dart';
-import 'package:vica_hotel_app/utils/images.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
-import 'models/room_model.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  final databaseHelper = DatabaseHelper.instance;
 
   // Add sample rooms
   // addSampleRooms(databaseHelper);
@@ -41,6 +40,14 @@ class MyApp extends StatelessWidget {
         builder: (context, state) {
           MainCubit mainCubit = context.read<MainCubit>();
           return MaterialApp(
+            locale: mainCubit.currentLocale,
+            supportedLocales: L10n.all,
+            localizationsDelegates: const [
+              AppLocalizations.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
             title: 'Flutter Demo',
             theme: mainCubit.isLightTheme ? AppTheme.lightTheme : AppTheme.darkTheme,
             debugShowCheckedModeBanner: false,

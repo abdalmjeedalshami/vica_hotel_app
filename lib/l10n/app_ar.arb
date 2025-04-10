@@ -1,0 +1,80 @@
+{
+  "language": "اللغة",
+
+  "hello": "اهلا بكم في فندق فيكا",
+  "login": "تسجيل الدخول",
+
+  "sign_up": "تسجيل",
+
+  "logout": "تسجيل خروج",
+
+  "are_you_sure": "هل انت متأكد؟",
+
+  "cancel": "إالغاء",
+
+  "remember_me": "تذكرني",
+
+  "forgot_password": "نسيت كلمة المرور",
+
+  "password": "كلمة المرور",
+
+  "password_confirmation": "تأكيد كلمة المرور",
+
+  "otp": "رمز التحقق",
+
+  "register_now": "تسجيل الان",
+
+  "or": "أو",
+
+  "continue_with_apple": "استخدام حساب ابل",
+
+  "continue_with_google": "استخدام حساب غوغل",
+
+  "delete_my_account": "حذف الحساب",
+
+  "email": "البريد الإلكتروني",
+
+  "theme": "المظهر",
+
+  "add_rooms": "إضافة بعض الغرف",
+
+  "profile": "الصفحة الشخصية",
+
+  "search_field_hint": "بحث عن فندق",
+
+  "welcome_card_title": "فندق لكل لحظة مليئة بالمشاعر",
+
+  "book_now": "حجز الان",
+
+  "choose_a_room": "اختيار غرفة",
+
+  "view_all": "عرض الكل",
+
+  "available": "متاح",
+
+  "unavailable": "غير متاح",
+
+  "night": "ليلة",
+
+  "home": "الرئيسية",
+
+  "booking": "الحجز",
+
+  "rooms": "الغرف",
+
+  "account": "الحساب",
+
+  "active": "الحجوزات القائمة",
+
+  "past": "تم حجزها",
+
+  "first_name": "الاسم الأول",
+
+  "last_name": "الاسم الأخير",
+
+  "username": "اسم المستخدم",
+
+  "full_name": "الاسم الكامل",
+
+  "phone_number": "رقم الهاتف"
+}

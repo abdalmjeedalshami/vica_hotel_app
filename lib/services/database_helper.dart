@@ -67,7 +67,6 @@ class DatabaseHelper {
   }
 
   static Future getRoomsByStatus() async {
-    print(await _database!.rawQuery('SELECT * FROM rooms'));
     return await _database!.rawQuery('SELECT * FROM rooms');
   }
 

@@ -14,6 +14,8 @@ import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../../../providers/auth/auth_cubit.dart';
 import '../../../utils/show_dialog_util.dart';
 import '../../../widgets/profile_field.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -39,6 +41,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     final authCubit = context.read<AuthCubit>();
     final user = authCubit.user;
     final imageUrl = authCubit.imageUrl;
+    final locale = AppLocalizations.of(context)!;
 
     return Scaffold(
       body: BlocConsumer<AuthCubit, AuthState>(
@@ -47,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           if (state is AuthImageUploaded || state is GetProfileSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('state.message')),
+              const SnackBar(content: Text('Profile image updated successfully')),
             );
           } else if (state is GetProfileFailure || state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -79,8 +82,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: image != null
-                          ? FileImage(image!)
+                      backgroundImage: context.read<AuthCubit>().profileImagePath.isNotEmpty
+                          ? FileImage(File(context.read<AuthCubit>().profileImagePath))
                           : NetworkImage(imageUrl ??
                           'https://th.bing.com/th/id/OIP.iPvPGJG166ivZnAII4ZS8gHaHa?rs=1&pid=ImgDetMain')
                       as ImageProvider,
@@ -116,7 +119,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 // Display user name
                 RalewayText.medium(
-                  '${user?['first_name'] ?? 'Guest'} ${user?['last_name'] ?? ''}',
+                  '${user?['first_name']} ${user?['last_name'] ?? ''}',
                   fontSize: responsive(context, 15),
                   color: Theme.of(context).primaryColor,
                 ),
@@ -125,7 +128,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 // Editable fields
                 ProfileField(
                   iconPath: AppIcons.person,
-                  label: 'Full name',
+                  label: locale.full_name,
                   value: '${user?['first_name'] ?? ''} ${user?['last_name'] ?? ''}',
                   onEdit: _editFullName,
                 ),
@@ -133,7 +136,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 ProfileField(
                   iconPath: AppIcons.email,
-                  label: 'Email',
+                  label: locale.email,
                   value: user?['email'] ?? 'No email',
                   onEdit: _editEmail,
                 ),
@@ -141,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                 ProfileField(
                   iconPath: AppIcons.phone,
-                  label: 'Phone number',
+                  label: locale.phone_number,
                   value: user?['phone'] ?? '+9639999999',
                   onEdit: _editPhone,
                 ),
@@ -156,7 +159,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     });
                   },
                   child: RalewayText.bold(
-                    'Logout',
+                    locale.logout,
                     color: AppColors.redColor,
                     fontSize: responsive(context, 16),
                   ),
@@ -168,10 +171,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 GestureDetector(
                   onTap: () {
                     NavigationUtil.navigateTo(context,
-                        screen: const DeleteAccountScreen());
+                        screen: const DeleteAccountScreen(), withRoute: true);
                   },
                   child: RalewayText.bold(
-                    'Delete my account',
+                    locale.delete_my_account,
                     color: AppColors.redColor,
                     fontSize: responsive(context, 10),
                   ),

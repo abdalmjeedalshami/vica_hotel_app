@@ -39,6 +39,9 @@ dependencies:
   path_provider:
   path:
   flutter_date_pickers:
+  flutter_localizations:
+    sdk: flutter
+  intl:
 #  flutter_secure_storage:
 
   # The following adds the Cupertino Icons font to your application.
@@ -69,7 +72,8 @@ flutter_icons:
 
 # The following section is specific to Flutter packages.
 flutter:
-
+  generate: true
+  uses-material-design: true
   assets:
     - assets/images/
     - assets/images/rooms/
@@ -103,7 +107,6 @@ flutter:
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:

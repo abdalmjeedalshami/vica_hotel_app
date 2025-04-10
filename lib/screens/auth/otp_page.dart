@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:vica_hotel_app/screens/auth/login_screen.dart';
-import 'package:vica_hotel_app/utils/images.dart';
+import 'package:vica_hotel_app/utils/colors.dart';
+import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import '../../providers/auth/auth_cubit.dart';
 import '../../providers/auth/auth_state.dart';
 import '../../utils/responsive_util.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 
 class OtpPage extends StatelessWidget {
-  final TextEditingController emailController = TextEditingController();
   final TextEditingController otpController = TextEditingController();
+  final String email;
 
-  OtpPage({super.key});
+  OtpPage({super.key, required this.email});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'PIN',
+          AppLocalizations.of(context)!.otp,
           style: TextStyle(color: Theme
               .of(context)
               .primaryColor),
@@ -45,11 +49,14 @@ class OtpPage extends StatelessWidget {
           }
           return ListView(
             children: [
-              SizedBox(
-                  height: MediaQuery
-                      .sizeOf(context)
-                      .height * .4,
-                  child: Image.asset(AppImages.room_1)),
+              SizedBox(height: responsive(context, 200)),
+              SvgPicture.asset(
+                AppIcons.logo,
+                width: responsive(context, 100),
+                height: responsive(context, 100),
+                colorFilter:
+                const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+              ),
               SizedBox(
                 height: responsive(context, 40),
               ),
@@ -57,7 +64,6 @@ class OtpPage extends StatelessWidget {
                 length: 4,
                 controller: otpController,
                 onCompleted: (otp) {
-                  const email = 'tiwas31157@hikuhu.com';
                   final otp = int.tryParse(otpController.text) ?? 0;
                   context.read<AuthCubit>().verifyEmail(email, otp);
                 },

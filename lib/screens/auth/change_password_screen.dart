@@ -10,6 +10,7 @@ import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import '../../utils/navigation_util.dart';
 
+
 class ChangePasswordScreen extends StatefulWidget {
 
   const ChangePasswordScreen({super.key});
@@ -20,6 +21,7 @@ class ChangePasswordScreen extends StatefulWidget {
 class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController passwordConfirmationController = TextEditingController();
+  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -56,67 +58,103 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                         left: responsive(context, 24),
                         right: responsive(context, 24),
                         top: responsive(context, 140)),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          // Logo
-                          SvgPicture.asset(
-                            AppIcons.logo,
-                            colorFilter: ColorFilter.mode(
-                                Theme
-                                    .of(context)
-                                    .primaryColor, BlendMode.srcIn),
-                          ),
-                          // Replace with your logo
+                    child: Form(
+                      key: formKey,
+                      child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            // Logo
+                            SvgPicture.asset(
+                              AppIcons.logo,
+                              colorFilter: ColorFilter.mode(
+                                  Theme
+                                      .of(context)
+                                      .primaryColor, BlendMode.srcIn),
+                            ),
+                            // Replace with your logo
 
-                          SizedBox(height: responsive(context, 60)),
+                            SizedBox(height: responsive(context, 60)),
 
-                          // Email TextField
-                          customTextField(context,
-                              controller: passwordController,
-                              hintText: '********',
-                              prefix: AppIcons.lock,
-                              suffix: AppIcons.check,
-                              type: TextInputType.visiblePassword),
-
-                          // Password TextField
-                          customTextField(context,
-                              controller: passwordConfirmationController,
-                              hintText: '********',
-                              prefix: AppIcons.lock,
-                              type: TextInputType.visiblePassword),
-
-                          SizedBox(height: responsive(context, 10)),
-
-                          SizedBox(height: responsive(context, 10)),
-
-                          // Change password Button
-                          CustomButton(
-                            text: 'Change password',
-                            onPressed: () {
-                              final password = passwordController.text;
-                              final passwordConfirmation = passwordConfirmationController.text;
-
-                              if (password.isEmpty || passwordConfirmation.isEmpty) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Please fill all fields")),
-                                );
-                                return;
+                            // Password TextField
+                            customTextField(context,
+                                controller: passwordController,
+                                hintText: '********',
+                                prefix: AppIcons.lock,
+                                type: TextInputType.visiblePassword,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Password is required';
+                                }
+                                if (value.length < 8) {
+                                  return 'Password must be at least 8 characters';
+                                }
+                                if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                                  return 'Password must contain at least one uppercase letter';
+                                }
+                                if (!RegExp(r'[0-9]').hasMatch(value)) {
+                                  return 'Password must contain at least one number';
+                                }
+                                return null;
                               }
+                            ),
 
-                              if (password != passwordConfirmation) {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(content: Text("Passwords do not match")),
-                                );
-                                return;
-                              }
+                            // Password confirmation TextField
+                            customTextField(context,
+                                controller: passwordConfirmationController,
+                                hintText: '********',
+                                prefix: AppIcons.lock,
+                                type: TextInputType.visiblePassword,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Password is required';
+                                }
+                                if (value.length < 8) {
+                                  return 'Password must be at least 8 characters';
+                                }
+                                if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                                  return 'Password must contain at least one uppercase letter';
+                                }
+                                if (!RegExp(r'[0-9]').hasMatch(value)) {
+                                  return 'Password must contain at least one number';
+                                }
+                                return null;
+                              },
+                            ),
 
-                              context.read<AuthCubit>().changePassword(password, passwordConfirmation);
-                            },
-                            // goTo: HomeLayout(),
-                          ),
-                        ])));
+                            SizedBox(height: responsive(context, 10)),
+
+                            SizedBox(height: responsive(context, 10)),
+
+                            // Change password Button
+                            CustomButton(
+                              text: 'Change password',
+                              onPressed: () {
+                                final password = passwordController.text;
+                                final passwordConfirmation = passwordConfirmationController.text;
+
+                                if (formKey.currentState!.validate()) {
+                                  context.read<AuthCubit>().changePassword(password, passwordConfirmation);
+                                } else {}
+
+                                if (password.isEmpty || passwordConfirmation.isEmpty) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text("Please fill all fields")),
+                                  );
+                                  return;
+                                }
+
+                                if (password != passwordConfirmation) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(content: Text("Passwords do not match")),
+                                  );
+                                  return;
+                                }
+                              },
+                              // goTo: HomeLayout(),
+                            ),
+                          ]),
+                    )));
           },
         ));
   }

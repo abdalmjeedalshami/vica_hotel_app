@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final VoidCallback onLogoutPressed;
@@ -14,6 +15,8 @@ class CustomAlertDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final locale = AppLocalizations.of(context)!;
+
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -24,7 +27,7 @@ class CustomAlertDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             // Question text
-            RalewayText.medium('Are you sure?',fontSize: responsive(context, 16)),
+            RalewayText.medium(locale.are_you_sure,fontSize: responsive(context, 16)),
             const SizedBox(height: 20),
             // Buttons
             Row(
@@ -37,7 +40,7 @@ class CustomAlertDialog extends StatelessWidget {
                     backgroundColor: AppColors.redColor, // Red for Logout button
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
-                  child: RalewayText.medium('Logout',fontSize: responsive(context, 16), color: AppColors.white),
+                  child: RalewayText.medium(locale.logout,fontSize: responsive(context, 16), color: AppColors.white),
                 ),
                 // Cancel Button
                 ElevatedButton(
@@ -46,7 +49,7 @@ class CustomAlertDialog extends StatelessWidget {
                     backgroundColor: AppColors.tealShade, // Grey for Cancel button
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
-                  child: RalewayText.medium('Cancel',fontSize: responsive(context, 16), color: AppColors.white),
+                  child: RalewayText.medium(locale.cancel,fontSize: responsive(context, 16), color: AppColors.white),
                 ),
               ],
             ),

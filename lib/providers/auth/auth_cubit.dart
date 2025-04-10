@@ -1,8 +1,15 @@
+import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../services/auth_service.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  bool emailCheck = false;
+
+  void toggleEmailCheck(){
+    emailCheck = !emailCheck;
+    emit(EmailCheckToggled());
+  }
   final AuthService authService;
   // final FlutterSecureStorage secureStorage = const FlutterSecureStorage(); // Secure storage instance
 
@@ -12,7 +19,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
       final response = await authService.register(data);
-      emit(AuthSuccess('Registration successful: ${response['message']}'));
+      emit(AuthSuccess('${response['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -22,7 +29,7 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
       final response = await authService.verifyEmail(email, otp);
-      emit(AuthSuccess('Verification successful: ${response['message']}'));
+      emit(AuthSuccess('${response['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -58,11 +65,9 @@ class AuthCubit extends Cubit<AuthState> {
 
       if (token == null) throw Exception('Token not found');
 
-      final response = await authService.logout(token!);
-
       token = null;
 
-      emit(AuthSuccess('Logout successful: $response'));
+      emit(AuthSuccess('Logout success'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -77,11 +82,12 @@ class AuthCubit extends Cubit<AuthState> {
 
       // Call AuthService to delete account
       final response = await authService.deleteAccount(token!, password);
+      final decodedResponse = jsonDecode(response);
 
       // Clear token after account deletion
       token = null;
 
-      emit(AuthSuccess('Account deleted successfully: $response'));
+      emit(AuthSuccess('${decodedResponse['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -91,7 +97,8 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
       final response = await authService.sendOtp(email);
-      emit(AuthSuccess('OTP sent successfully: $response'));
+      final decodedResponse = jsonDecode(response);
+      emit(AuthSuccess('${decodedResponse['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -123,7 +130,8 @@ class AuthCubit extends Cubit<AuthState> {
 
       // Call AuthService to change password
       final response = await authService.changePassword(token!, password, passwordConfirmation);
-      emit(AuthSuccess('Password changed successfully: $response'));
+      final decodedResponse = jsonDecode(response);
+      emit(AuthSuccess('${decodedResponse['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }
@@ -141,7 +149,7 @@ class AuthCubit extends Cubit<AuthState> {
       // Call AuthService to fetch the profile
       final profileData = await authService.getProfile(token!);
       user = profileData['user'];
-      emit(GetProfileSuccess('Profile retrieved successfully', user));
+      emit(GetProfileSuccess('Welcome', user));
     } catch (e) {
       emit(GetProfileFailure(e.toString()));
     }
@@ -165,6 +173,8 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  String profileImagePath = '';
+
   Future<void> uploadProfileImage(String filePath) async {
     try {
       emit(AuthLoading());
@@ -174,7 +184,9 @@ class AuthCubit extends Cubit<AuthState> {
 
       // Call AuthService to upload profile image
       final response = await authService.uploadProfileImage(token!, filePath);
-      emit(AuthImageUploaded('Image uploaded successfully: $response'));
+      final decodedResponse = jsonDecode(response);
+      profileImagePath = filePath;
+      emit(AuthImageUploaded('${decodedResponse['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));
     }

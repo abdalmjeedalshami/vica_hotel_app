@@ -7,7 +7,6 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
-
 import '../providers/auth/auth_cubit.dart';
 import 'auth/login_screen.dart';
 
