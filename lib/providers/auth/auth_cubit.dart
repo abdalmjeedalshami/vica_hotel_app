@@ -53,6 +53,7 @@ class AuthCubit extends Cubit<AuthState> {
       final user = response['data']['user'];
       imageUrl = user['image_url'];
 
+
       emit(AuthSuccess(message, data));
     } catch (e) {
       emit(AuthFailure(e.toString()));
