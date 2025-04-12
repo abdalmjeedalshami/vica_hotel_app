@@ -8,7 +8,7 @@ A **Flutter-based hotel booking application** with secure Laravel authentication
 
 ### App Screenshots
 
-<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 50px;">
   <img src="assets/images/screenshots/login.png" alt="Login Screen" width="200" />
   <img src="assets/images/screenshots/main_page.png" alt="Main Page" width="200" />
   <img src="assets/images/screenshots/Single room.png" alt="Single Room" width="200" />
