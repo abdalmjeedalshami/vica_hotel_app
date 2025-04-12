@@ -6,17 +6,17 @@ A **Flutter-based hotel booking application** with secure Laravel authentication
 
 ## Screenshots & Demo 📸🎬  
 
-### App Screenshots  
-<p align="center">
+### App Screenshots
+
+<div align="center" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
   <img src="assets/images/screenshots/login.png" alt="Login Screen" width="200" />
   <img src="assets/images/screenshots/main_page.png" alt="Main Page" width="200" />
   <img src="assets/images/screenshots/Single room.png" alt="Single Room" width="200" />
-</p>
-<p align="center">
   <img src="assets/images/screenshots/Rooms.png" alt="Rooms List" width="200" />
   <img src="assets/images/screenshots/Past Bookings.png" alt="Past Bookings" width="200" />
   <img src="assets/images/screenshots/Account.png" alt="Account Screen" width="200" />
-</p>
+</div>
+
 
 ## Demo GIF 🎬  
 <p align="center">
