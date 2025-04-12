@@ -20,7 +20,6 @@ class AppTheme {
               backgroundColor: AppColors.white,
               side: const BorderSide(color: AppColors.lightGray, width: .5))),
     inputDecorationTheme: const InputDecorationTheme(fillColor: AppColors.softWhite),
-    // elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: AppColors.white)),
     cardColor: AppColors.semiTransparentWhite,
   );
 
@@ -42,7 +41,6 @@ class AppTheme {
               backgroundColor: AppColors.darkGray_1,
               side: const BorderSide(color: AppColors.white, width: .5))),
     inputDecorationTheme: const InputDecorationTheme(fillColor: AppColors.darkGray_1),
-    // elevatedButtonTheme: ElevatedButtonThemeData(style: ElevatedButton.styleFrom(backgroundColor: AppColors.black)),
     cardColor: AppColors.darkGray_1,
 
   );

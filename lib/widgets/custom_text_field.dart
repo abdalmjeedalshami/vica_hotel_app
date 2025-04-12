@@ -12,7 +12,7 @@ Widget customTextField(context,
           String? suffix,
         TextInputType? type,
           String? Function(String?)? validator,
-          void Function(String)? onFieldSubmitted, // ← add this
+          void Function(String)? onFieldSubmitted,
           void Function(String)? onChange
         }) =>
     Padding(
@@ -27,7 +27,7 @@ Widget customTextField(context,
         keyboardType: type,
         validator: validator,
         onChanged: onChange,
-        onFieldSubmitted: onFieldSubmitted, // ← use it
+        onFieldSubmitted: onFieldSubmitted,
         decoration: InputDecoration(
           prefixIcon: Padding(
             padding: EdgeInsets.all(responsive(context, 12)),

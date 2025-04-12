@@ -13,7 +13,7 @@ Widget titlesSlider(context, {Color? selectedColor}) => SizedBox(
     MainCubit mainCubit = context.read<MainCubit>();
     return ListView.builder(
     scrollDirection: Axis.horizontal,
-    itemCount: 5, // Number of slider items
+    itemCount: 5,
     itemBuilder: (context, index) {
       if (index == 0) {
         return Padding(

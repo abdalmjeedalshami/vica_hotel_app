@@ -17,7 +17,6 @@ import '../../providers/home/home_cubit.dart';
 import '../../utils/navigation_util.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -84,7 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           colorFilter: ColorFilter.mode(
                               Theme.of(context).primaryColor, BlendMode.srcIn),
                         ),
-                        // Replace with your logo
 
                         SizedBox(height: responsive(context, 60)),
 
@@ -94,34 +92,36 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: emailController,
                           type: TextInputType.emailAddress,
                           validator: (value) {
-                            if (value == null || value.isEmpty) return 'Email required';
-                            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$').hasMatch(value)) return 'Invalid email';
+                            if (value == null || value.isEmpty)
+                              return 'Email required';
+                            if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
+                                .hasMatch(value)) return 'Invalid email';
                             return null;
                           },
                         ),
 
-
                         // Password TextField
-                        customTextField(context,
-                            controller: passwordController,
-                            hintText: '********',
-                            prefix: AppIcons.lock,
-                            type: TextInputType.visiblePassword,
-                            validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Password is required';
-                              }
-                              if (value.length < 8) {
-                                return 'Password must be at least 8 characters';
-                              }
-                              if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                                return 'Password must contain at least one uppercase letter';
-                              }
-                              if (!RegExp(r'[0-9]').hasMatch(value)) {
-                                return 'Password must contain at least one number';
-                              }
-                              return null;
-                            },
+                        customTextField(
+                          context,
+                          controller: passwordController,
+                          hintText: '********',
+                          prefix: AppIcons.lock,
+                          type: TextInputType.visiblePassword,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Password is required';
+                            }
+                            if (value.length < 8) {
+                              return 'Password must be at least 8 characters';
+                            }
+                            if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                              return 'Password must contain at least one uppercase letter';
+                            }
+                            if (!RegExp(r'[0-9]').hasMatch(value)) {
+                              return 'Password must contain at least one number';
+                            }
+                            return null;
+                          },
                         ),
 
                         SizedBox(height: responsive(context, 10)),
@@ -196,13 +196,15 @@ class _LoginScreenState extends State<LoginScreen> {
                         // Apple Sign-In Button
                         socialLoginButton(context,
                             text: locale.continue_with_apple,
-                            iconPath: AppIcons.apple, onPressed: () {}),
+                            iconPath: AppIcons.apple,
+                            onPressed: () {}),
 
                         SizedBox(height: responsive(context, 20)),
 
                         socialLoginButton(context,
                             text: locale.continue_with_google,
-                            iconPath: AppIcons.google, onPressed: () {})
+                            iconPath: AppIcons.google,
+                            onPressed: () {})
                       ]),
                 )));
       },

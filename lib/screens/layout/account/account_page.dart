@@ -16,7 +16,6 @@ import '../../../utils/show_dialog_util.dart';
 import '../../../widgets/profile_field.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -29,18 +28,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
   File? image; // Stores the selected image
 
   void _editFullName() {}
+
   void _editEmail() {}
+
   void _editPhone() {}
 
   void _logout() {
-    // Handle logout action
   }
 
   @override
   Widget build(BuildContext context) {
     final authCubit = context.read<AuthCubit>();
     final user = authCubit.user;
-    final imageUrl = authCubit.imageUrl;
     final locale = AppLocalizations.of(context)!;
 
     return Scaffold(
@@ -50,7 +49,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
           if (state is AuthImageUploaded || state is GetProfileSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Profile image updated successfully')),
+              const SnackBar(
+                  content: Text('Profile image updated successfully')),
             );
           } else if (state is GetProfileFailure || state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -82,16 +82,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     CircleAvatar(
                       radius: 50,
-                      backgroundImage: context.read<AuthCubit>().profileImagePath.isNotEmpty
-                          ? FileImage(File(context.read<AuthCubit>().profileImagePath))
-                          : NetworkImage(imageUrl ??
-                          'https://th.bing.com/th/id/OIP.iPvPGJG166ivZnAII4ZS8gHaHa?rs=1&pid=ImgDetMain')
-                      as ImageProvider,
+                      backgroundImage: state is AuthImageUploaded
+                          ? NetworkImage(authCubit.profileImagePath)
+                          : NetworkImage(context
+                                      .read<AuthCubit>()
+                                      .box
+                                      .get('userImage') ??
+                                  'https://th.bing.com/th/id/OIP.iPvPGJG166ivZnAII4ZS8gHaHa?rs=1&pid=ImgDetMain')
+                              as ImageProvider,
                     ),
                     GestureDetector(
                       onTap: () async {
                         final XFile? pickedFile =
-                        await picker.pickImage(source: ImageSource.gallery);
+                            await picker.pickImage(source: ImageSource.gallery);
 
                         if (pickedFile != null) {
                           setState(() {
@@ -129,7 +132,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ProfileField(
                   iconPath: AppIcons.person,
                   label: locale.full_name,
-                  value: '${user?['first_name'] ?? ''} ${user?['last_name'] ?? ''}',
+                  value:
+                      '${user?['first_name'] ?? ''} ${user?['last_name'] ?? ''}',
                   onEdit: _editFullName,
                 ),
                 SizedBox(height: responsive(context, 16)),

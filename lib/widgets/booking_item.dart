@@ -55,9 +55,7 @@ class BookingRoomCard extends StatelessWidget {
                       Row(
                         children: List.generate(5, (index) {
                           return Icon(
-                            index < room.rate
-                                ? Icons.star
-                                : Icons.star_border,
+                            index < room.rate ? Icons.star : Icons.star_border,
                             color: Colors.orange,
                             size: responsive(context, 13),
                           );
@@ -76,7 +74,7 @@ class BookingRoomCard extends StatelessWidget {
                     children: [
                       Padding(
                           padding:
-                          EdgeInsets.only(right: responsive(context, 8)),
+                              EdgeInsets.only(right: responsive(context, 8)),
                           child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).unselectedTitlesSlider,
@@ -94,7 +92,7 @@ class BookingRoomCard extends StatelessWidget {
                                           BlendMode.srcIn))))),
                       Padding(
                           padding:
-                          EdgeInsets.only(right: responsive(context, 8)),
+                              EdgeInsets.only(right: responsive(context, 8)),
                           child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).unselectedTitlesSlider,
@@ -112,7 +110,7 @@ class BookingRoomCard extends StatelessWidget {
                                           BlendMode.srcIn))))),
                       Padding(
                           padding:
-                          EdgeInsets.only(right: responsive(context, 8)),
+                              EdgeInsets.only(right: responsive(context, 8)),
                           child: Container(
                               decoration: BoxDecoration(
                                 color: Theme.of(context).unselectedTitlesSlider,
@@ -128,20 +126,17 @@ class BookingRoomCard extends StatelessWidget {
                                               ? Colors.blue
                                               : Colors.grey,
                                           BlendMode.srcIn)))))
-
                     ],
                   ),
                   const SizedBox(height: 8),
                   // Start and End dates
                   const Row(
                     children: [
-                      Icon(Icons.calendar_today,
-                          size: 14, color: Colors.grey),
+                      Icon(Icons.calendar_today, size: 14, color: Colors.grey),
                       SizedBox(width: 4),
                       Text(
                         '2023-10-10',
-                        style:
-                            TextStyle(color: Colors.grey, fontSize: 12),
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                       SizedBox(width: 8),
                       Text(
@@ -151,8 +146,7 @@ class BookingRoomCard extends StatelessWidget {
                       SizedBox(width: 8),
                       Text(
                         '2023-12-10',
-                        style:
-                            TextStyle(color: Colors.grey, fontSize: 12),
+                        style: TextStyle(color: Colors.grey, fontSize: 12),
                       ),
                     ],
                   ),

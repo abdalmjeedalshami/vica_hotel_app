@@ -29,13 +29,13 @@ class SearchPageState extends State<SearchPage> {
         return Theme(
           data: Theme.of(context).copyWith(
             colorScheme: const ColorScheme.light(
-              primary: AppColors.primary, // header background & buttons
-              onPrimary: Colors.white, // header text
-              onSurface: Colors.black, // body text
+              primary: AppColors.primary,
+              onPrimary: Colors.white,
+              onSurface: Colors.black,
             ),
             textButtonTheme: TextButtonThemeData(
               style: TextButton.styleFrom(
-                foregroundColor: AppColors.primary, // cancel & ok button color
+                foregroundColor: AppColors.primary,
               ),
             ),
           ),
@@ -48,7 +48,6 @@ class SearchPageState extends State<SearchPage> {
       setState(() {
         _startDate = picked;
       });
-      // Do something with picked date
     }
   }
 
@@ -81,7 +80,6 @@ class SearchPageState extends State<SearchPage> {
       setState(() {
         _endDate = picked;
       });
-      // Do something with picked date
     }
   }
 

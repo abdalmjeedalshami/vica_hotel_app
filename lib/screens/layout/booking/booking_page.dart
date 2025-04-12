@@ -25,11 +25,8 @@ class BookingScreenState extends State<BookingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Choose which list to display based on the toggle state.
     List<Room> bookedList = context.read<RoomCubit>().booked;
     List<Room> pastList = context.read<RoomCubit>().past;
-    // List<Room> rooms =
-    //     _selectedTab == 0 ? activeBookings : pastBookings;
     List<Room> rooms = _selectedTab == 0 ? bookedList : pastList;
     final locale = AppLocalizations.of(context)!;
 

@@ -6,13 +6,13 @@ import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import '../utils/colors.dart';
 
 Widget socialLoginButton(context,
-    {required String text, // Button text
-    required String iconPath, // Path to icon image
-    required VoidCallback onPressed, // Button action
-    double? borderWidth, // Default border width
-    double? borderRadius, // Default border radius
-    double fontSize = 14, // Default font size
-    Color textColor = AppColors.charcoalGray, // Default text color
+    {required String text,
+    required String iconPath,
+    required VoidCallback onPressed,
+    double? borderWidth,
+    double? borderRadius,
+    double fontSize = 14,
+    Color textColor = AppColors.charcoalGray,
     EdgeInsets? padding}) {
   return OutlinedButton(
     style: OutlinedButton.styleFrom(

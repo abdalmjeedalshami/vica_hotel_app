@@ -32,12 +32,6 @@ class RoomCubit extends Cubit<RoomState> {
         shower: true,
         wifi: false,
         breakfast: false,
-        // features: [
-        //   {'iconPath': AppIcons.tv, 'available': true},
-        //   {'iconPath': AppIcons.shower, 'available': true},
-        //   {'iconPath': AppIcons.wifi, 'available': false},
-        //   {'iconPath': AppIcons.breakfast, 'available': true},
-        // ],
       ),
       Room(
           name: "Ocean View",
@@ -56,12 +50,6 @@ class RoomCubit extends Cubit<RoomState> {
           shower: true,
           wifi: false,
           breakfast: false
-          // features: [
-          //   {'iconPath': AppIcons.tv, 'available': false},
-          //   {'iconPath': AppIcons.shower, 'available': false},
-          //   {'iconPath': AppIcons.wifi, 'available': false},
-          //   {'iconPath': AppIcons.breakfast, 'available': false},
-          // ],
           ),
       Room(
           name: "Mountain Retreat",
@@ -80,12 +68,6 @@ class RoomCubit extends Cubit<RoomState> {
           shower: true,
           wifi: false,
           breakfast: false
-          // features: [
-          //   {'iconPath': AppIcons.tv, 'available': true},
-          //   {'iconPath': AppIcons.shower, 'available': true},
-          //   {'iconPath': AppIcons.wifi, 'available': false},
-          //   {'iconPath': AppIcons.breakfast, 'available': true},
-          // ],
           ),
       Room(
           name: "City Apartment",
@@ -104,12 +86,6 @@ class RoomCubit extends Cubit<RoomState> {
           shower: true,
           wifi: false,
           breakfast: false
-          // features: [
-          //   {'iconPath': AppIcons.tv, 'available': true},
-          //   {'iconPath': AppIcons.shower, 'available': true},
-          //   {'iconPath': AppIcons.wifi, 'available': false},
-          //   {'iconPath': AppIcons.breakfast, 'available': true},
-          // ],
           ),
       Room(
           name: "Beach Bungalow",
@@ -128,12 +104,6 @@ class RoomCubit extends Cubit<RoomState> {
           shower: true,
           wifi: false,
           breakfast: false
-          // features: [
-          //   {'iconPath': AppIcons.tv, 'available': true},
-          //   {'iconPath': AppIcons.shower, 'available': true},
-          //   {'iconPath': AppIcons.wifi, 'available': false},
-          //   {'iconPath': AppIcons.breakfast, 'available': true},
-          // ],
           ),
     ];
 

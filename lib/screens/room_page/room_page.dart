@@ -16,9 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class RoomPage extends StatelessWidget {
   final Room room;
 
-  const RoomPage(
-      {super.key,
-      required this.room}); // List containing icon paths and availability
+  const RoomPage({super.key, required this.room});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +71,6 @@ class RoomPage extends StatelessWidget {
                                 AppColors.darkGray_1, BlendMode.srcIn),
                           ),
                         ),
-                        // child: Image.asset(
-                        //   AppIcons.backArrow,
-                        //   color: AppColors.darkGray_1,
-                        // )
                       ),
                     ),
                     IconButton(
@@ -147,7 +141,9 @@ class RoomPage extends StatelessWidget {
                                 fontSize: responsive(context, 18),
                                 color: AppColors.white),
                             PoppinsText.semiBold(
-                                room.available ? locale.available : locale.unavailable,
+                                room.available
+                                    ? locale.available
+                                    : locale.unavailable,
                                 fontSize: responsive(context, 10),
                                 color: room.available
                                     ? AppColors.white
@@ -357,12 +353,17 @@ class RoomPage extends StatelessWidget {
                     ),
                     onPressed: () {
                       DatabaseHelper.updateRoomStatus(
-                          id: room.id!,
-                          status:
-                              room.status == 'booked' ? locale.available : 'booked').then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(room.status == 'booked' ? 'Booked canceled' : 'Room booked')));
+                              id: room.id!,
+                              status: room.status == 'booked'
+                                  ? locale.available
+                                  : 'booked')
+                          .then((value) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(room.status == 'booked'
+                                ? 'Booked canceled'
+                                : 'Room booked')));
                         NavigationUtil.popScreen(context);
-                                context.read<RoomCubit>().fetchRooms();
+                        context.read<RoomCubit>().fetchRooms();
                       });
                     },
                     child: Text(

@@ -16,7 +16,6 @@ class CustomAlertDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
-
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -37,16 +36,17 @@ class CustomAlertDialog extends StatelessWidget {
                 ElevatedButton(
                   onPressed: onLogoutPressed,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.redColor, // Red for Logout button
+                    backgroundColor: AppColors.redColor,
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
                   child: RalewayText.medium(locale.logout,fontSize: responsive(context, 16), color: AppColors.white),
                 ),
+
                 // Cancel Button
                 ElevatedButton(
                   onPressed: onCancelPressed,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: AppColors.tealShade, // Grey for Cancel button
+                    backgroundColor: AppColors.tealShade,
                     padding: const EdgeInsets.symmetric(horizontal: 25),
                   ),
                   child: RalewayText.medium(locale.cancel,fontSize: responsive(context, 16), color: AppColors.white),

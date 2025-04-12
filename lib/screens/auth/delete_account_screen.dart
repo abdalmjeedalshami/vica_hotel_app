@@ -71,7 +71,6 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
                                     .of(context)
                                     .primaryColor, BlendMode.srcIn),
                           ),
-                          // Replace with your logo
 
                           SizedBox(height: responsive(context, 60)),
 
@@ -102,7 +101,6 @@ class _DeleteAccountScreenState extends State<DeleteAccountScreen> {
 
                               context.read<AuthCubit>().deleteAccount(password);
                             },
-                            // goTo: HomeLayout(),
                           ),
                         ])));
           },

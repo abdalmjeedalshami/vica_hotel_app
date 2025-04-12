@@ -33,36 +33,6 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         onPressed: onPressed,
-        // onPressed: () {
-          /*context.read<AuthCubit>().register({
-            'first_name': 'aaa',
-            'last_name': 'aaa',
-            'user_name': 'aaaa',
-            'email': 'tiwas31157@hikuhu.com',
-            'password': 'aaaaaaaa',
-            'password_confirmation': 'aaaaaaaa',
-          });*/
-          // Navigator.of(context).pushAndRemoveUntil(
-          //   PageRouteBuilder(
-          //     pageBuilder: (context, animation, secondaryAnimation) => goTo,
-          //     transitionsBuilder:
-          //         (context, animation, secondaryAnimation, child) {
-          //       const begin = Offset(1, 0);
-          //       const end = Offset.zero;
-          //       const curve = Curves.linear;
-          //
-          //       var tween = Tween(begin: begin, end: end)
-          //           .chain(CurveTween(curve: curve));
-          //       var offsetAnimation = animation.drive(tween);
-          //
-          //       return SlideTransition(
-          //           position: offsetAnimation, child: child);
-          //     },
-          //     transitionDuration: const Duration(milliseconds: 400),
-          //   ),
-          //       (route) => false,
-          // );
-        // },
         child: Text(
           text,
           style: const TextStyle(
@@ -73,7 +43,6 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-
 
 // Usage in Screens
 /*

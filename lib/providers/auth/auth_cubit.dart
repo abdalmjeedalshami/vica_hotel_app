@@ -1,9 +1,12 @@
 import 'dart:convert';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import '../../services/auth_service.dart';
 import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
+  final box = Hive.box('authBox');
+
   bool emailCheck = false;
 
   void toggleEmailCheck(){
@@ -11,7 +14,6 @@ class AuthCubit extends Cubit<AuthState> {
     emit(EmailCheckToggled());
   }
   final AuthService authService;
-  // final FlutterSecureStorage secureStorage = const FlutterSecureStorage(); // Secure storage instance
 
   AuthCubit(this.authService) : super(AuthInitial());
 
@@ -43,8 +45,6 @@ class AuthCubit extends Cubit<AuthState> {
       emit(AuthLoading());
       final response = await authService.login(email, password, rememberMe);
 
-      // await secureStorage.write(key: 'token', value: response['data']['token']);
-
       // Extract relevant fields from the response
       final message = response['message'];
       final data = response['data'];
@@ -53,6 +53,10 @@ class AuthCubit extends Cubit<AuthState> {
       final user = response['data']['user'];
       imageUrl = user['image_url'];
 
+      box.put('isLoggedIn', true);
+      box.put('userEmail', email);
+      box.put('userToken', token);
+      box.put('userImage', imageUrl);
 
       emit(AuthSuccess(message, data));
     } catch (e) {
@@ -64,9 +68,11 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
+      String? token = box.get('userToken');
+
       if (token == null) throw Exception('Token not found');
 
-      token = null;
+      box.clear();
 
       emit(AuthSuccess('Logout success'));
     } catch (e) {
@@ -78,15 +84,17 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
+      String? token = box.get('userToken');
+
       // Retrieve token from secure storage
       if (token == null) throw Exception('Token not found');
 
       // Call AuthService to delete account
-      final response = await authService.deleteAccount(token!, password);
+      final response = await authService.deleteAccount(token, password);
       final decodedResponse = jsonDecode(response);
 
       // Clear token after account deletion
-      token = null;
+      box.clear();
 
       emit(AuthSuccess('${decodedResponse['message']}'));
     } catch (e) {
@@ -116,6 +124,8 @@ class AuthCubit extends Cubit<AuthState> {
 
       token = response['data']['token'];
 
+      box.put('userToken', token);
+
       emit(AuthSuccess(message, data));
     } catch (e) {
       emit(AuthFailure(e.toString()));
@@ -126,11 +136,13 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
+      final String? token = box.get('userToken');
+
       // Retrieve token from secure storage
       if (token == null) throw Exception('Token not found');
 
       // Call AuthService to change password
-      final response = await authService.changePassword(token!, password, passwordConfirmation);
+      final response = await authService.changePassword(token, password, passwordConfirmation);
       final decodedResponse = jsonDecode(response);
       emit(AuthSuccess('${decodedResponse['message']}'));
     } catch (e) {
@@ -144,11 +156,13 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(GetProfileLoading());
 
+      final String? token = box.get('userToken');
+
       // Retrieve token from secure storage
       if (token == null) throw Exception('Token not found');
 
       // Call AuthService to fetch the profile
-      final profileData = await authService.getProfile(token!);
+      final profileData = await authService.getProfile(token);
       user = profileData['user'];
       emit(GetProfileSuccess('Welcome', user));
     } catch (e) {
@@ -160,10 +174,12 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
+      final String? token = box.get('userToken');
+
       if (token == null) throw Exception('Token not found');
 
       // Call AuthService to update profile
-      final updatedData = await authService.updateProfile(token!, profileData);
+      final updatedData = await authService.updateProfile(token, profileData);
       final newUser = updatedData['data']['user']; // Update the stored user profile
       user!['first_name'] = newUser['first_name'];
       user!['last_name'] = newUser['last_name'];
@@ -180,13 +196,15 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       emit(AuthLoading());
 
+      final String? token = box.get('userToken');
+
       // Retrieve token from secure storage
       if (token == null) throw Exception('Token not found');
 
       // Call AuthService to upload profile image
-      final response = await authService.uploadProfileImage(token!, filePath);
+      final response = await authService.uploadProfileImage(token, filePath);
       final decodedResponse = jsonDecode(response);
-      profileImagePath = filePath;
+      profileImagePath = decodedResponse['data']['profile_image'];
       emit(AuthImageUploaded('${decodedResponse['message']}'));
     } catch (e) {
       emit(AuthFailure(e.toString()));

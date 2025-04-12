@@ -72,7 +72,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                       .of(context)
                                       .primaryColor, BlendMode.srcIn),
                             ),
-                            // Replace with your logo
 
                             SizedBox(height: responsive(context, 60)),
 
@@ -151,7 +150,6 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                                   return;
                                 }
                               },
-                              // goTo: HomeLayout(),
                             ),
                           ]),
                     )));

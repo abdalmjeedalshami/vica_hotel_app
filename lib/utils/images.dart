@@ -14,17 +14,7 @@ class AppImages {
   static const String room_4 = 'assets/images/rooms/room_4.png';
   static const String room_5 = 'assets/images/rooms/room_5.png';
   static const String room_6 = 'assets/images/rooms/room_6.jpeg';
-
-  // General Icons
-
-
-  // Social Media Icons
-
-
-  // Feature Icons
-
 }
-
 
 // Usage in Widgets:
 /*

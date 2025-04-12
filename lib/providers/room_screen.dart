@@ -15,7 +15,8 @@ class RoomScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Image.asset(room.image, height: 200, width: double.infinity, fit: BoxFit.cover),
+            Image.asset(room.image,
+                height: 200, width: double.infinity, fit: BoxFit.cover),
             const SizedBox(height: 16),
             const Text(
               "Description:",
@@ -37,7 +38,8 @@ class RoomScreen extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(right: 8.0),
-                    child: Image.asset(room.images[index], height: 100, width: 100, fit: BoxFit.cover),
+                    child: Image.asset(room.images[index],
+                        height: 100, width: 100, fit: BoxFit.cover),
                   );
                 },
               ),

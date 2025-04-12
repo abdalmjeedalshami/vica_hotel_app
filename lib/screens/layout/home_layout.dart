@@ -46,7 +46,6 @@ class HomeLayout extends StatelessWidget {
                   fontSize: responsive(context, 10),
                   fontWeight: FontWeight.w500),
               selectedItemColor: AppColors.primary,
-              // unselectedItemColor: AppColors.darkTransparentBlack,
               showSelectedLabels: true,
               showUnselectedLabels: true,
               items: [

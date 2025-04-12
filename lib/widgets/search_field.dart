@@ -55,8 +55,6 @@ class SearchField extends StatelessWidget {
                           BlendMode.srcIn),
                     ),
                   ),
-                  // prefixIcon: Image.asset(AppIcons.search,
-                  //     color: Theme.of(context).customTextFieldIconColor),
                   suffixIcon: Container(
                     padding: EdgeInsets.all(responsive(context, 16)),
                     child: SvgPicture.asset(
@@ -66,8 +64,6 @@ class SearchField extends StatelessWidget {
                           BlendMode.srcIn),
                     ),
                   ),
-                  // suffixIcon: Image.asset(AppIcons.downArrow,
-                  //     color: Theme.of(context).customTextFieldIconColor),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5),
                     borderSide: BorderSide.none,
@@ -102,6 +98,4 @@ class SearchField extends StatelessWidget {
 // Usage in Screens
 /*
 TextEditingController searchController = TextEditingController();
-
-
  */

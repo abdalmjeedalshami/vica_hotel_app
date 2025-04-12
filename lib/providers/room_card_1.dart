@@ -14,7 +14,6 @@ class RoomCard1 extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image.asset(room.image),
             Image.asset(room.image, height: 100, width: 200, fit: BoxFit.cover),
             Padding(
               padding: const EdgeInsets.all(8.0),

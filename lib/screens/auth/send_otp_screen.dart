@@ -30,7 +30,6 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
     super.dispose();
   }
 
-  // Default state for rememberMe checkbox
   @override
   Widget build(BuildContext context) {
     final locale = AppLocalizations.of(context)!;
@@ -72,7 +71,6 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                                       .of(context)
                                       .primaryColor, BlendMode.srcIn),
                             ),
-                            // Replace with your logo
 
                             SizedBox(height: responsive(context, 60)),
 
@@ -115,7 +113,6 @@ class _SendOtpScreenState extends State<SendOtpScreen> {
                                   return;
                                 }
                                 },
-                              // goTo: HomeLayout(),
                             ),
                           ]),
                     )));

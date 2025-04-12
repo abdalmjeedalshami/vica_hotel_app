@@ -13,8 +13,6 @@ class Room {
   final bool breakfast;
   final String status;
 
-  // final List<Map<String, dynamic>> features; // New field for features
-
   Room({
     this.id,
     required this.name,
@@ -29,7 +27,6 @@ class Room {
     required this.wifi,
     required this.breakfast,
     this.status = 'available'
-    // required this.features,
   });
 
   // Convert Room to a Map for database operations
@@ -48,9 +45,6 @@ class Room {
       'wifi': wifi ? 1 : 0,
       'breakfast': breakfast ? 1 : 0,
       'status': status
-      // 'features': features
-      //     .map((feature) => '${feature['iconPath']},${feature['available']}')
-      //     .join(';'), // Serialize features list
     };
   }
 
@@ -70,16 +64,6 @@ class Room {
       wifi: map['wifi'] == 1,
       breakfast: map['breakfast'] == 1,
       status: map['status']
-
-      // features: map['features']
-      //     .split(';') // Split serialized features string into individual feature maps
-      //     .map((featureString) {
-      //   List<String> parts = featureString.split(',');
-      //   return {
-      //     'iconPath': parts[0],
-      //     'available': parts[1] == 'true',
-      //   };
-      // }).toList(),
     );
   }
 }

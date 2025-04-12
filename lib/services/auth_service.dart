@@ -36,9 +36,9 @@ class AuthService {
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
-      return json.decode(responseBody); // Parse the response into a Map
+      return json.decode(responseBody);
     } else {
-      throw Exception(response.reasonPhrase); // Handle error responses
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -59,9 +59,9 @@ class AuthService {
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
-      return json.decode(responseBody); // Parse the response into a Map
+      return json.decode(responseBody);
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors appropriately
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -77,9 +77,9 @@ class AuthService {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return await response.stream.bytesToString(); // Logout successful
+      return await response.stream.bytesToString();
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -97,9 +97,9 @@ class AuthService {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return await response.stream.bytesToString(); // Success response
+      return await response.stream.bytesToString();
     } else {
-      throw Exception(response.reasonPhrase); // Error response
+      throw Exception(response.reasonPhrase);
     }
 }
 
@@ -115,9 +115,9 @@ class AuthService {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return await response.stream.bytesToString(); // Return server's response
+      return await response.stream.bytesToString();
     } else {
-      throw Exception(response.reasonPhrase); // Handle any errors
+      throw Exception(response.reasonPhrase);
 }
   }
 
@@ -138,9 +138,9 @@ class AuthService {
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
-      return json.decode(responseBody); // Parse the response into a Map
+      return json.decode(responseBody);
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors appropriately
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -161,9 +161,9 @@ class AuthService {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return await response.stream.bytesToString(); // Return success message
+      return await response.stream.bytesToString();
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -180,9 +180,9 @@ class AuthService {
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
-      return json.decode(responseBody)['data']; // Extract and return the "data" field
+      return json.decode(responseBody)['data'];
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors gracefully
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -200,9 +200,9 @@ class AuthService {
 
     if (response.statusCode == 200) {
       String responseBody = await response.stream.bytesToString();
-      return json.decode(responseBody); // Parse and return the response
+      return json.decode(responseBody);
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors
+      throw Exception(response.reasonPhrase);
     }
   }
 
@@ -219,9 +219,9 @@ class AuthService {
     http.StreamedResponse response = await request.send();
 
     if (response.statusCode == 200) {
-      return await response.stream.bytesToString(); // Success response
+      return await response.stream.bytesToString();
     } else {
-      throw Exception(response.reasonPhrase); // Handle errors gracefully
+      throw Exception(response.reasonPhrase);
     }
   }
 }

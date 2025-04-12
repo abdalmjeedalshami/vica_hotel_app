@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:hive/hive.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:vica_hotel_app/l10n/l10n.dart';
 import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/home/home_cubit.dart';
@@ -13,11 +15,12 @@ import 'package:vica_hotel_app/services/database_helper.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Add sample rooms
-  // addSampleRooms(databaseHelper);
+  final dir = await getApplicationDocumentsDirectory();
+  Hive.init(dir.path);
+  await Hive.openBox('authBox');
 
   runApp(const MyApp());
 }

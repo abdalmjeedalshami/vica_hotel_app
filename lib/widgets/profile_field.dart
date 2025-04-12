@@ -8,10 +8,6 @@ import '../utils/colors.dart';
 import '../utils/icons.dart';
 import '../utils/responsive_util.dart';
 
-/// A reusable widget for profile information fields that displays:
-/// • An icon representing the field
-/// • A label and its value
-/// • An edit button on the right side.
 class ProfileField extends StatelessWidget {
   final String iconPath;
   final String label;
@@ -48,12 +44,6 @@ class ProfileField extends StatelessWidget {
             width: 20,
             colorFilter: ColorFilter.mode(prefixColor, BlendMode.srcIn),
           ),
-
-          // Prefix Icon
-          // Image.asset(
-          //   iconPath,
-          //   color: prefixColor,
-          // ),
           SizedBox(width: responsive(context, 16)),
           Expanded(
             child: Column(
@@ -71,6 +61,7 @@ class ProfileField extends StatelessWidget {
               ],
             ),
           ),
+
           // The edit icon on the right side.
           GestureDetector(
             onTap: (){
@@ -81,10 +72,6 @@ class ProfileField extends StatelessWidget {
                 colorFilter: ColorFilter.mode(
                     Theme.of(context).socialLoginButtonColor, BlendMode.srcIn)),
           )
-          // Image.asset(
-          //   AppIcons.edit,
-          //   color: Theme.of(context).socialLoginButtonColor,
-          // ),
         ],
       ),
     );

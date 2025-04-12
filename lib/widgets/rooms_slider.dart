@@ -8,11 +8,11 @@ import '../utils/responsive_util.dart';
 Widget roomsSlider(context,
         {required List<Room> rooms, ScrollController? controller}) =>
     SizedBox(
-      height: responsive(context, 350), // Adjust the height based on card size
+      height: responsive(context, 350),
       child: ListView.builder(
         controller: controller,
-        scrollDirection: Axis.horizontal, // Horizontal scrolling
-        itemCount: rooms.length, // Number of room cards
+        scrollDirection: Axis.horizontal,
+        itemCount: rooms.length,
         itemBuilder: (context, index) {
           final room = rooms[index];
           return Padding(

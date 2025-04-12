@@ -25,8 +25,6 @@ class NavigationUtil {
           (route) => withRoute
     );
   }
-
-  // Optional: Add a pop method for convenience
   static void popScreen(BuildContext context) {
     Navigator.pop(context);
   }
