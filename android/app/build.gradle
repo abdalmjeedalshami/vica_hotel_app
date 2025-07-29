@@ -60,6 +60,13 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy {
+        force 'androidx.window:window:1.1.0' // downgrade if needed
+    }
+}
+
+
 flutter {
     source '../..'
 }
