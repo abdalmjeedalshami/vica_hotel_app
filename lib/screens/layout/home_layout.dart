@@ -9,7 +9,7 @@ import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/home/home_cubit.dart';
 import '../../providers/home/home_state.dart';
 

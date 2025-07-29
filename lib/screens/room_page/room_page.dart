@@ -7,11 +7,11 @@ import 'package:vica_hotel_app/services/database_helper.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
+import '../../l10n/app_localizations.dart';
 import '../../models/room_model.dart';
 import '../../utils/icons.dart';
 import '../../utils/responsive_util.dart';
 import '../../widgets/poppins_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class RoomPage extends StatelessWidget {
   final Room room;

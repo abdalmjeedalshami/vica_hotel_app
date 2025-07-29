@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pinput/pinput.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/auth/auth_cubit.dart';
 import '../../providers/auth/auth_state.dart';
 import '../../utils/responsive_util.dart';
 import 'change_password_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
   final String email;

@@ -13,7 +13,8 @@ import 'package:vica_hotel_app/screens/flash_screen.dart';
 import 'package:vica_hotel_app/services/auth_service.dart';
 import 'package:vica_hotel_app/services/database_helper.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'l10n/app_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

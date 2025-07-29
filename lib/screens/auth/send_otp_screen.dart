@@ -8,8 +8,8 @@ import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
+import '../../l10n/app_localizations.dart';
 import '../../utils/navigation_util.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class SendOtpScreen extends StatefulWidget {

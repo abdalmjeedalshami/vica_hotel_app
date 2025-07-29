@@ -41,7 +41,7 @@ dependencies:
   flutter_date_pickers:
   flutter_localizations:
     sdk: flutter
-  intl:
+  intl: ^0.20.2
   hive:
   hive_flutter:
 #  flutter_secure_storage:

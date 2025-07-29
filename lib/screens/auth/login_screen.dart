@@ -13,9 +13,9 @@ import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import 'package:vica_hotel_app/widgets/social_login_button.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/home/home_cubit.dart';
 import '../../utils/navigation_util.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -92,10 +92,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           controller: emailController,
                           type: TextInputType.emailAddress,
                           validator: (value) {
-                            if (value == null || value.isEmpty)
+                            if (value == null || value.isEmpty) {
                               return 'Email required';
+                            }
                             if (!RegExp(r'^[^@]+@[^@]+\.[^@]+$')
-                                .hasMatch(value)) return 'Invalid email';
+                                .hasMatch(value)) {
+                              return 'Invalid email';
+                            }
                             return null;
                           },
                         ),

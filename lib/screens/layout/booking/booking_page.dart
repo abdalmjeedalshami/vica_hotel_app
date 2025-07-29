@@ -8,9 +8,9 @@ import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/utils/theme/app_theme.dart';
 import 'package:vica_hotel_app/widgets/active_tab.dart';
 import 'package:vica_hotel_app/widgets/app_bar.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../models/room_model.dart';
 import '../../../widgets/booking_item.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({Key? key}) : super(key: key);

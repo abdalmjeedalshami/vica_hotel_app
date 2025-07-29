@@ -6,10 +6,10 @@ import 'package:vica_hotel_app/screens/auth/login_screen.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/auth/auth_cubit.dart';
 import '../../providers/auth/auth_state.dart';
 import '../../utils/responsive_util.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class OtpPage extends StatelessWidget {

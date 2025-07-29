@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:hive/hive.dart';
-import 'package:vica_hotel_app/providers/auth/auth_state.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/icons.dart';
@@ -23,6 +22,7 @@ class SplashScreenState extends State<SplashScreen> {
     super.initState();
     // Wait for 800ms and then navigate to the Login screen with custom animation
     Future.delayed(const Duration(milliseconds: 800), () {
+      if (!mounted) return; // ✅ Prevent unsafe context usage
       Navigator.pushReplacement(
         context,
         PageRouteBuilder(

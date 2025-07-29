@@ -8,10 +8,10 @@ import 'package:vica_hotel_app/widgets/rooms_slider.dart';
 import 'package:vica_hotel_app/widgets/search_field.dart';
 import 'package:vica_hotel_app/widgets/titles_slider.dart';
 import 'package:vica_hotel_app/widgets/welcome_dialog.dart';
+import '../../../l10n/app_localizations.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/responsive_util.dart';
 import '../../../widgets/poppins_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class HomeScreen extends StatelessWidget {

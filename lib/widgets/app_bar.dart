@@ -3,12 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/providers/auth/auth_cubit.dart';
 import 'package:vica_hotel_app/providers/auth/auth_state.dart';
 import 'package:vica_hotel_app/providers/room_provider.dart';
+import '../l10n/app_localizations.dart';
 import '../providers/home/home_cubit.dart';
 import '../providers/main/main_cubit.dart';
 import '../providers/main/main_state.dart';
 import '../services/database_helper.dart';
 import '../utils/responsive_util.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 AppBar appBar(context) => AppBar(
       elevation: 0,

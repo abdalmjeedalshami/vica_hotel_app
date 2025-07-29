@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:vica_hotel_app/screens/layout/home_layout.dart';
 import 'package:vica_hotel_app/utils/navigation_util.dart';
+import '../../l10n/app_localizations.dart';
 import '../../providers/auth/auth_cubit.dart';
 import '../../providers/auth/auth_state.dart';
 import '../../providers/home/home_cubit.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class UpdateProfileScreen extends StatefulWidget {

@@ -10,8 +10,8 @@ import 'package:vica_hotel_app/widgets/custom_button.dart';
 import 'package:vica_hotel_app/widgets/custom_text_field.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
 import 'package:vica_hotel_app/widgets/social_login_button.dart';
+import '../../l10n/app_localizations.dart';
 import '../../utils/navigation_util.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 
 class SignUpScreen extends StatefulWidget {

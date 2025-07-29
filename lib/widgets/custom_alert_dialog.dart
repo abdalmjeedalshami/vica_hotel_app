@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:vica_hotel_app/utils/colors.dart';
 import 'package:vica_hotel_app/utils/responsive_util.dart';
 import 'package:vica_hotel_app/widgets/raleway_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../l10n/app_localizations.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   final VoidCallback onLogoutPressed;
